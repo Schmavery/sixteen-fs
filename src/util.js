@@ -14,7 +14,8 @@ export class Hover extends Component {
     this.setState({hover: false});
   }
   render(){
-    var s = this.state.hover ? {...this.props.style,overflow:"hidden"} : {overflow:"hidden"};
+    var s = this.state.hover ? {...this.props.style,...this.props.common,overflow:'hidden'} :
+                {...this.props.common,overflow:'hidden'};
     return (
       <div
         onMouseEnter={this.onMouseEnter}
@@ -31,8 +32,8 @@ export class Rule extends Component {
       <hr style={{
         border:0,
         height:1,
-        borderTop:"1px solid rgba(0, 0, 0, 0.1)",
-        borderBottom:"1px solid rgba(255, 255, 255, 0.3)"}} />);
+        borderTop:'1px solid rgba(0, 0, 0, 0.1)',
+        borderBottom:'1px solid rgba(255, 255, 255, 0.3)'}} />);
   }
 }
 
@@ -49,14 +50,22 @@ export class ContentWrapper extends Component {
       content = this.props.children;
     }
     return (<div style={{
-      backgroundColor:"#fff",
-      padding:"10px",
-      margin: "10px",
-      marginLeft:"10px",
-      borderRadius:"3px",
-      border:"1px solid #dfe3ee"
+      backgroundColor:'#fff',
+      padding:'10px',
+      margin: '10px',
+      marginLeft:'10px',
+      borderRadius:'3px',
+      border:'1px solid #dfe3ee'
     }}>
       {content}
     </div>);
+  }
+}
+
+export class Image extends Component {
+  render() {
+    return (
+      <div style={this.props.style} />
+    );
   }
 }
