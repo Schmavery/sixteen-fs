@@ -34,8 +34,7 @@ class NavListItem extends Component {
           fontFamily:'sans-serif',
           fontWeight:'lighter',
           padding:'3px',
-          marginRight:'10px',
-          fontSize:"80%"}}>
+          marginRight:'10px'}}>
         {this.props.text}
         </div>
       </Hover>);

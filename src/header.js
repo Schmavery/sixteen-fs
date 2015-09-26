@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Hover, Image} from './util';
+import {Hover, Image, VertRule} from './util';
 var f16 = 'ffffffffffffffff';
 
 export class HeaderBar extends Component {
@@ -74,8 +74,7 @@ class HeaderMenu extends Component {
           <Image style={{width:"23px",height:"23px",margin:"4px",backgroundColor:'red'}} />
           <div style={{marginRight:'10px',padding:'5px',paddingRight:'0px'}}>FirstName</div>
         </Hover>
-
-          <div style={{borderLeft:"1px solid #355089",height:"1.5em"}} />
+          <VertRule color={'#355089'} />
         <Hover style={{backgroundColor:'#355089',borderRadius:'3px',cursor:'pointer'}}>
           <div style={{marginRight:'10px',padding:'5px',paddingLeft:'10px'}}>Home</div>
         </Hover>

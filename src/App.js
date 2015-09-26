@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {Hover, Rule, ContentWrapper} from './util';
+import {Hover, Rule} from './util';
 import {HeaderBar} from './header';
-import {Post,NewStatus} from "./content";
+import {Post, Ad, NewStatus} from "./content";
 import {NavBar} from './nav';
 
 var f16 = 'ffffffffffffffff';
@@ -10,7 +10,7 @@ class AdsBar extends Component {
   render() {
     var text = this.props.text;
     var arr = Array(this.props.num).join().split(',').map(function(v, i) {
-      return <ContentWrapper />
+      return <Ad />
     });
     return (<div>{arr}</div>);
   }
@@ -26,6 +26,7 @@ export class App extends Component {
           overflow:'hidden',
           width:'100%',
           left:'0px',
+          fontSize:'90%',
           fontFamily:'sans-serif'}}>
         <HeaderBar />
         <div style={{
@@ -35,13 +36,14 @@ export class App extends Component {
             top:'50px',
             position:'relative'}}>
           <div style={{flex:'0 0 35em'}}>
-            <ContentWrapper />
-            <ContentWrapper />
-            <ContentWrapper />
-            <ContentWrapper />
-            <ContentWrapper>Test</ContentWrapper>
-            <ContentWrapper />
-            <ContentWrapper />
+            <NewStatus />
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+            <Post />
           </div>
           <div style={{flex:'0 1 5em',order:-2, width:'5em'}}>
           </div>

@@ -31,33 +31,30 @@ export class Rule extends Component {
     return (
       <hr style={{
         border:0,
-        height:1,
-        borderTop:'1px solid rgba(0, 0, 0, 0.1)',
-        borderBottom:'1px solid rgba(255, 255, 255, 0.3)'}} />);
+        height:0,
+        width:'100%',
+        borderTop:'1px solid #e9eaed'}} />);
+  }
+}
+
+export class VertRule extends Component {
+  render() {
+    return (
+      <div style={{borderLeft:"1px solid",height:"1.5em",borderColor:this.props.color}} />);
   }
 }
 
 export class ContentWrapper extends Component {
   render() {
-    var content;
-    if (!this.props.children){
-      content = (<span>asfsafas gdsfgaoa sudnb osadn boasd nboasi dnboa sdoian sdbas
-          doinboa
-          <Rule />dnboiad asdnboasndb adsibnasdob asd boasd bojasd boajsd
-          boajs dbojasd basgaknas asgkj asgj sajg asjg asg ksa gaks gas
-          ga gwaogiwa giwa gawg </span>);
-    } else {
-      content = this.props.children;
-    }
     return (<div style={{
       backgroundColor:'#fff',
       padding:'10px',
       margin: '10px',
       marginLeft:'10px',
       borderRadius:'3px',
-      border:'1px solid #dfe3ee'
+      border:'1px solid #dfe3ee',
     }}>
-      {content}
+      {this.props.children}
     </div>);
   }
 }
