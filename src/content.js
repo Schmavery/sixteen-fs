@@ -5,9 +5,9 @@ var f16 = 'ffffffffffffffff';
 class PersonBrief extends Component {
   render () {
     return (
-      <div style={{display:'flex', marginBottom:'15px'}}>
+      <div style={{display:Util.flex, marginBottom:'15px'}}>
         <Image style={{width:'40px',height:'40px',backgroundColor:'red'}} />
-        <div style={{display:'flex', flexDirection:'column', marginLeft:'10px'}}>
+        <div style={{display:Util.flex, flexDirection:'column', marginLeft:'10px'}}>
           <NameTag name='FirstName LastName'/>
           <Hover hover={{textDecoration:'underline'}} style={{color:'#9197a3',marginTop:'2px'}}>
             5 hrs · Montreal, Quebec
@@ -32,7 +32,7 @@ export class Post extends Component {
       <ContentWrapper>
       {this.props.liked ?
         <span>
-          <div style={{display:'flex',alignItems:'center'}}>
+          <div style={{display:Util.flex,alignItems:'center'}}>
             <NameTag name={this.props.liked}/>
             <div>&nbsp;liked this.</div>
           </div>
@@ -86,7 +86,7 @@ export class NewStatus extends Component {
   render () {
     return (
       <ContentWrapper>
-        <span style={{display:'flex',alignItems:'center',fontSize:'90%'}}>
+        <span style={{display:Util.flex,alignItems:'center',fontSize:'90%'}}>
           <Image style={{width:'20px',height:'20px',backgroundColor:'red'}} />
           <div style={{marginLeft:'5px',marginRight:'10px',fontWeight:'bold'}}>Update Status</div>
           <VertRule color='#e9eaed' />
@@ -97,7 +97,7 @@ export class NewStatus extends Component {
           <div style={{marginLeft:'5px',marginRight:'10px',fontWeight:'bold'}}>Create Photo Album</div>
         </span>
         <Rule />
-        <div style={{display:'flex', flexDirection:'row'}}>
+        <div style={{display:Util.flex, flexDirection:'row'}}>
           <Image style={{margin:'5px',width:'40px',height:'40px',backgroundColor:'red'}} />
           <textarea style={{
             marginTop:'10px',
@@ -109,7 +109,7 @@ export class NewStatus extends Component {
             onChange={(e) => this.setState({'new-status':e.target.value})}/>
         </div>
         <Rule />
-        <div style={{display:'flex', flexDirection:'row'}}>
+        <div style={{display:Util.flex, flexDirection:'row'}}>
           <div style={{
             marginLeft:'auto',
             padding:'5px',

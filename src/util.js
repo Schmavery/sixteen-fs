@@ -81,3 +81,6 @@ export class NameTag extends Component {
     </Hover>);
   }
 }
+
+var flex = 'flex;display:-webkit-flex;display:-ms-flexbox';
+export default {flex};

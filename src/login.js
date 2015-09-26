@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Hover, Rule} from './util';
+import Util, {Hover, Rule} from './util';
 
 import {HeaderBar} from './header';
 import {Post, Ad, AdFooter, NewStatus} from './content';
@@ -8,7 +8,7 @@ import {NavBar} from './nav';
 export class LoginPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {first:"",last:"",email:"",email2:"",password:""};
+    this.state = {first:'',last:'',email:'',email2:'',password:''};
     this.validateSignup = this.validateSignup.bind(this);
     this.validateLogin = this.validateLogin.bind(this);
     this.createInput = this.createInput.bind(this);
@@ -20,9 +20,9 @@ export class LoginPage extends Component {
         this.state.email &&
         this.state.email2 &&
         this.state.password)){
-      return this.setState({error:"You must enter a value for all fields."})
+      return this.setState({error:'You must enter a value for all fields.'})
     } else if (this.state.email !== this.state.email2){
-      return this.setState({error:"Emails do not match."});
+      return this.setState({error:'Emails do not match.'});
     }
 
     this.props.fns.setAccount({
@@ -70,7 +70,7 @@ export class LoginPage extends Component {
   render() {
     var loginHeader = (
       <div style={{
-          display:'flex',
+          display:Util.flex,
           flexDirection: 'row',
           width:'100%',
           backgroundColor:'#3b5998',
@@ -91,7 +91,7 @@ export class LoginPage extends Component {
         <div style={{
             marginLeft:'auto',
             marginRight:'50px',
-            display:'flex'}}>
+            display:Util.flex}}>
           <input type='text' placeholder='Email' style={{height:'25px',paddingLeft:'5px',marginRight:'10px'}}
               onChange={(e) => this.setState({'login-email':e.target.value})}/>
           <input type='text' placeholder='Password' style={{height:'25px',paddingLeft:'5px',marginRight:'10px'}}
@@ -111,13 +111,13 @@ export class LoginPage extends Component {
 
     var signupForm = (
       <div style={{
-        display:'flex',
+        display:Util.flex,
         flexDirection:'column',
         marginRight:'50px',
       }}>
         <div style={{fontWeight:'bold',fontSize:'250%',marginBottom:'20px'}}>Sign Up</div>
         <span style={{color:'red'}}>{this.state.error}</span>
-        <div style={{display:'flex'}}>
+        <div style={{display:Util.flex}}>
           {this.createInput('first', 'First name')}
           &nbsp;&nbsp;
           {this.createInput('last', 'Last name')}
@@ -133,7 +133,7 @@ export class LoginPage extends Component {
             marginLeft:'5px',
             marginTop:'20px',
             borderRadius:'5px',
-            display:'flex',
+            display:Util.flex,
             justifyContent:'center',
             alignItems:'center',
             width:'200px',
@@ -150,7 +150,7 @@ export class LoginPage extends Component {
 
     return (
       <div style={{
-          display:'flex',
+          display:Util.flex,
           flexDirection:'column',
           backgroundColor:'#e9eaed',
           overflow:'hidden',
@@ -159,7 +159,7 @@ export class LoginPage extends Component {
           fontFamily:'sans-serif'}}>
         {loginHeader}
         <div style={{
-            display:'flex',
+            display:Util.flex,
             flexDirection: 'row',
             top:'50px',
             position:'relative'}}>

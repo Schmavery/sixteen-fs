@@ -28,7 +28,7 @@ export class HeaderBar extends Component {
     return (
       <div style={{
         position:'fixed',
-        display:'flex',
+        display:Util.flex,
         flexDirection: 'row',
         width:'100%',
         backgroundColor:'#3b5998',
@@ -62,12 +62,12 @@ class HeaderMenu extends Component {
       fontWeight:'bolder',
       marginLeft:'auto',
       marginRight:'30px',
-      display:'flex',
+      display:Util.flex,
       flexDirection: 'row',
       alignItems:'center'
       }}>
         <Hover hover={{backgroundColor:'#355089',borderRadius:'3px',cursor:'pointer'}}
-               style={{display:'flex',flexDirection:'row',alignItems:'center'}}>
+               style={{display:Util.flex,flexDirection:'row',alignItems:'center'}}>
           <Image style={{width:'23px',height:'23px',margin:'4px',backgroundColor:'red'}} />
           <div style={{marginRight:'10px',padding:'5px',paddingRight:'0px'}}>{this.props.fns.getAccount().first}</div>
         </Hover>

@@ -12,7 +12,7 @@ export class App extends Component {
         siteName: 'ffffffffffffffff',
         first: 'Mark',
         last: 'Zuckerberg',
-        posts: [{id:1, content:"PSADP S A L DSA P L DA SLD"}],
+        posts: [{id:1, content:'PSADP S A L DSA P L DA SLD'}],
         comments: []
       }
     };

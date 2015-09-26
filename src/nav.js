@@ -6,7 +6,7 @@ class NavListTopItem extends Component {
   render() {
     return (
       <Hover hover={{textDecoration:'underline'}}
-        style={{display:'flex',flexDirection:'row',alignItems:'center',cursor:'pointer'}}>
+        style={{display:Util.flex,flexDirection:'row',alignItems:'center',cursor:'pointer'}}>
         <Image style={{width:'20px',height:'20px',margin:'4px',backgroundColor:'red'}} />
         <div style={{
           float:'left',
@@ -25,7 +25,7 @@ class NavListItem extends Component {
   render() {
     return (
       <Hover hover={{backgroundColor:'#dcdee3',borderRadius:'3px',}}
-        style={{display:'flex',flexDirection:'row',alignItems:'center',cursor:'pointer'}}>
+        style={{display:Util.flex,flexDirection:'row',alignItems:'center',cursor:'pointer'}}>
         <Image style={{width:'20px',height:'20px',margin:'4px',backgroundColor:'red'}} />
         <div style={{
           float:'left',
@@ -66,7 +66,7 @@ export class NavBar extends Component {
     var text = this.props.text;
     return (
     <span>
-      <NavListTopItem text={this.props.fns.getAccount().first + " " + this.props.fns.getAccount().last}/>
+      <NavListTopItem text={this.props.fns.getAccount().first + ' ' + this.props.fns.getAccount().last}/>
       <NavListTopItem text='Edit Profile'/>
       <NavTitle text='favourites'/>
       <NavListItem text='News Feed'/>
