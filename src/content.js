@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Hover, ContentWrapper, Rule, Image, VertRule} from './util';
+import {Hover, ContentWrapper, Rule, Image, VertRule, NameTag} from './util';
 var f16 = 'ffffffffffffffff';
 
 class PersonBrief extends Component {
@@ -8,9 +8,7 @@ class PersonBrief extends Component {
       <div style={{display:'flex', marginBottom:"15px"}}>
         <Image style={{width:"40px",height:"40px",backgroundColor:"red"}} />
         <div style={{display:'flex', flexDirection:'column', marginLeft:"10px"}}>
-          <Hover style={{textDecoration:"underline"}} common={{color:'#355089',fontWeight:'bold',marginTop:"2px"}}>
-            FirstName LastName
-          </Hover>
+          <NameTag name='FirstName LastName'/>
           <Hover style={{textDecoration:"underline"}} common={{color:'#9197a3', marginTop:"2px"}}>
             5 hrs · Montreal, Quebec
           </Hover>
@@ -32,6 +30,14 @@ export class Post extends Component {
   render () {
     return (
       <ContentWrapper>
+      {this.props.liked ?
+        <span>
+          <div style={{display:'flex',alignItems:'center'}}>
+            <NameTag name={this.props.liked}/>
+            <div>&nbsp;liked this.</div>
+          </div>
+          <Rule />
+        </span> : null}
       <PersonBrief />
         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
         sed do eiusmod tempor incididunt ut labore et dolore magna

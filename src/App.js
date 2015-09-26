@@ -37,7 +37,7 @@ export class App extends Component {
             position:'relative'}}>
           <div style={{flex:'0 0 35em'}}>
             <NewStatus />
-            <Post />
+            <Post liked={'Bob Joe'}/>
             <Post />
             <Post />
             <Post />

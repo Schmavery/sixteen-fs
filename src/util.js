@@ -9,9 +9,15 @@ export class Hover extends Component {
    }
   onMouseEnter() {
     this.setState({hover: true});
+    if (this.props.onMouseEnter) {
+      this.props.onMouseEnter();
+    }
   }
   onMouseLeave() {
     this.setState({hover: false});
+    if (this.props.onMouseLeave) {
+      this.props.onMouseLeave();
+    }
   }
   render(){
     var s = this.state.hover ? {...this.props.style,...this.props.common,overflow:'hidden'} :
@@ -64,5 +70,13 @@ export class Image extends Component {
     return (
       <div style={this.props.style} />
     );
+  }
+}
+
+export class NameTag extends Component {
+  render() {
+    return (<Hover style={{textDecoration:"underline"}} common={{color:'#355089',fontWeight:'bold'}}>
+      {this.props.name}
+    </Hover>);
   }
 }
