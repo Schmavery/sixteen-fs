@@ -7,15 +7,14 @@ class NavListTopItem extends Component {
     return (
       <Hover style={{textDecoration:"underline"}}
         common={{display:'flex',flexDirection:'row',alignItems:"center",cursor:'pointer'}}>
-        <Image style={{width:"20px",height:"20px",margin:"4px",marginLeft:'7px',backgroundColor:'red'}} />
+        <Image style={{width:"20px",height:"20px",margin:"4px",backgroundColor:'red'}} />
         <div style={{
           float:'left',
           clear:'left',
           fontFamily:'sans-serif',
           fontWeight:'lighter',
           padding:'3px',
-          marginRight:'10px',
-          fontSize:"80%"}}>
+          marginRight:'10px'}}>
         {this.props.text}
         </div>
       </Hover>);
@@ -27,7 +26,7 @@ class NavListItem extends Component {
     return (
       <Hover style={{backgroundColor:'#dcdee3',borderRadius:'3px',}}
         common={{display:'flex',flexDirection:'row',alignItems:"center",cursor:'pointer'}}>
-        <Image style={{width:"20px",height:"20px",margin:"4px",marginLeft:'7px',backgroundColor:'red'}} />
+        <Image style={{width:"20px",height:"20px",margin:"4px",backgroundColor:'red'}} />
         <div style={{
           float:'left',
           clear:'left',
@@ -50,7 +49,6 @@ class NavTitle extends Component {
           clear:'left',
           fontFamily:'sans-serif',
           padding:'3px',
-          paddingLeft:'10px',
           marginTop:'15px',
           marginRight:'10px',
           fontWeight:'bold',
@@ -68,7 +66,7 @@ export class NavBar extends Component {
     var text = this.props.text;
     return (
     <span>
-      <NavListTopItem text='FirstName LastName'/>
+      <NavListTopItem text='First Last'/>
       <NavListTopItem text='Edit Profile'/>
       <NavTitle text='favourites'/>
       <NavListItem text='News Feed'/>

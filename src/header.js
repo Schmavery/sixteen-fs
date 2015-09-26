@@ -8,8 +8,8 @@ export class HeaderBar extends Component {
       position:'relative',
       backgroundColor:'#f7f7f7',
       borderRadius:'3px',
-      paddingLeft:'5px',
-      paddingRight:'2px',
+      paddingLeft:'10px',
+      paddingRight:'3px',
       paddingTop:'0px',
       marginRight:'5px',
       marginLeft:'20px',
@@ -21,7 +21,8 @@ export class HeaderBar extends Component {
         fontWeight:'bold',
         position:'relative',
         top:'10px',
-        margin:'0px'
+        marginTop:'-12px',
+        fontSize:'220%'
       }}>
         {f16}
       </div>

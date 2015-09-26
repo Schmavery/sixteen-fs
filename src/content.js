@@ -50,6 +50,8 @@ export class Ad extends Component {
   render () {
     return (
       <ContentWrapper>
+        <span style={{fontWeight:'bold',color:'#9197a3'}}>TRENDING</span>
+        <Rule />
         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
         sed do eiusmod tempor incididunt ut labore et dolore magna
         aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -62,27 +64,41 @@ export class Ad extends Component {
   }
 }
 
+export class AdFooter extends Component {
+  render () {
+    return (
+      <div style={{marginLeft:'20px',fontSize:'90%',color:'#9197a3'}}>
+      English (US) · Privacy · Terms · Cookies · Advertising · Ad Choices ·
+      More <br />
+      {f16} © 2015
+      </div>
+    );
+  }
+}
+
 export class NewStatus extends Component {
   render () {
     return (
       <ContentWrapper>
-        <span style={{display:'flex',alignItems:'center'}}>
+        <span style={{display:'flex',alignItems:'center',fontSize:'90%'}}>
           <Image style={{width:'20px',height:'20px',backgroundColor:'red'}} />
           <div style={{marginLeft:'5px',marginRight:'10px',fontWeight:'bold'}}>Update Status</div>
           <VertRule color='#e9eaed' />
           <Image style={{marginLeft:'10px',width:'20px',height:'20px',backgroundColor:'red'}} />
-          <div style={{marginLeft:'5px',marginRight:'10px',fontWeight:'bold'}}>Update Status</div>
+          <div style={{marginLeft:'5px',marginRight:'10px',fontWeight:'bold'}}>Add Photos/Video</div>
           <VertRule color='#e9eaed' />
           <Image style={{marginLeft:'10px',width:'20px',height:'20px',backgroundColor:'red'}} />
-          <div style={{marginLeft:'5px',marginRight:'10px',fontWeight:'bold'}}>Update Status</div>
+          <div style={{marginLeft:'5px',marginRight:'10px',fontWeight:'bold'}}>Create Photo Album</div>
         </span>
         <Rule />
         <div style={{display:'flex', flexDirection:'row'}}>
           <Image style={{margin:'5px',width:'40px',height:'40px',backgroundColor:'red'}} />
           <textarea style={{
             marginTop:'10px',
-            minHeight:'30px',
+            minHeight:'50px',
+            width:'100%',
             border:'0px',
+            outline:'0px',
             resize:'none'}} placeholder={'What\'s on your mind?'}/>
         </div>
         <Rule />
