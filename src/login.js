@@ -6,6 +6,47 @@ import {Post, Ad, AdFooter, NewStatus} from './content';
 import {NavBar} from './nav';
 
 export class LoginPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {first:"",last:"",email:"",email2:"",password:""};
+    this.validateSignup = this.validateSignup.bind(this);
+    this.validateLogin = this.validateLogin.bind(this);
+    this.createInput = this.createInput.bind(this);
+  }
+
+  validateSignup(){
+    var t = this;
+    Object.keys(this.state).map(function (k) {
+      t.props.account[k] = t.state[k];
+    })
+    this.props.changePage('feed');
+  }
+
+  validateLogin(){
+    this.props.changePage('feed');
+  }
+
+  createInput(formName, niceName) {
+    var t = this;
+    return (
+        <input type='text' placeholder={niceName} style={{
+          fontSize:'120%',
+          marginTop:'10px',
+          display:'block',
+          width:'100%',
+          height:'40px',
+          paddingLeft:'10px',
+          outline:'0px',
+          border:'1px solid lightgrey',
+          borderRadius:'5px'}}
+          onChange={function(e) {
+            var obj = {};
+            obj[formName] = e.target.value;
+            t.setState(obj);
+          }}/>
+    );
+  }
+
 
   render() {
     var loginHeader = (
@@ -24,7 +65,7 @@ export class LoginPage extends Component {
             fontWeight:'bold',
             letterSpacing:'2px',
             marginTop:'20px',
-            marginLeft:'60px'}} onClick={this.props.changePage.bind(null, 'feed')}>
+            marginLeft:'60px'}}>
           {this.props.account.siteName}
         </div>
         <div style={{
@@ -39,27 +80,12 @@ export class LoginPage extends Component {
               border:'1px solid #354c8c',
               marginLeft:'auto',
               marginRight:'50px',
-              cursor:'pointer'}} onClick={this.props.changePage.bind(null, 'feed')}>
+              cursor:'pointer'}} onClick={this.validateLogin}>
             Log In
           </div>
         </div>
       </div>
     );
-
-    function createInput(formName, niceName) {
-      return (
-          <input type='text' placeholder={niceName} style={{
-            fontSize:'120%',
-            marginTop:'10px',
-            display:'block',
-            width:'100%',
-            height:'40px',
-            paddingLeft:'10px',
-            outline:'0px',
-            border:'1px solid lightgrey',
-            borderRadius:'5px'}}/>
-      );
-    }
 
     var signupForm = (
       <div style={{
@@ -69,12 +95,13 @@ export class LoginPage extends Component {
       }}>
         <div style={{fontWeight:'bold',fontSize:'250%',marginBottom:'20px'}}>Sign Up</div>
         <div style={{display:'flex'}}>
-          {createInput('first', 'First name')}
+          {this.createInput('first', 'First name')}
           &nbsp;&nbsp;
-          {createInput('last', 'Last name')}
+          {this.createInput('last', 'Last name')}
         </div>
-        {createInput('email', 'Email')}
-        {createInput('email2', 'Re-enter email')}
+        {this.createInput('email', 'Email')}
+        {this.createInput('email2', 'Re-enter email')}
+        {this.createInput('password', 'New password')}
         <div style={{marginRight:'50px',marginLeft:'5px',marginTop:'20px',fontSize:'70%'}}>
         By clicking Sign Up, you agree to our Terms and that you have read our Data Policy, including our Cookie Use.
         </div>
@@ -91,7 +118,7 @@ export class LoginPage extends Component {
             cursor:'pointer'
             }}
           hover={{backgroundColor:'#6bb933'}}
-          noHover={{backgroundColor:'#519f18'}} onClick={this.props.changePage.bind(null, 'feed')}>
+          noHover={{backgroundColor:'#519f18'}} onClick={this.validateSignup}>
           Sign Up
         </Hover>
       </div>
@@ -121,9 +148,6 @@ export class LoginPage extends Component {
                 paddingRight:'180px'}}>
               Connect with friends and the
               world around you on {this.props.account.siteName}.</div>
-          </div>
-          <div style={{order: 2, flex:'0 0 40%'}}>
-            {signupForm}
           </div>
           <div style={{order: 2, flex:'0 0 40%'}}>
             {signupForm}

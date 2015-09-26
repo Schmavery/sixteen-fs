@@ -21,10 +21,17 @@ export class App extends Component {
     this.setState({page:page});
   }
 
+  getHelper(){
+    // return {
+    //   changePage: (function(page) {this.setState({page:page});}).bind(this),
+    //   setAccount: (function(account) {this.setState({account:account})});
+    // }
+  }
+
   render() {
     switch (this.state.page){
       case 'login':
-        return <LoginPage changePage={this.changePage} account={this.state.account} />;
+        return <LoginPage changePage={this.changePage.bind(this)} account={this.state.account} />;
       case 'feed':
         return <NewsFeed account={this.state.account} />;
     }
