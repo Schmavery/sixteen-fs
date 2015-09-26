@@ -15,6 +15,7 @@ export class App extends Component {
       }
     };
     this.changePage = this.changePage.bind(this);
+    this.getHelper = this.getHelper.bind(this);
   }
 
   changePage(page) {
@@ -22,16 +23,18 @@ export class App extends Component {
   }
 
   getHelper(){
-    // return {
-    //   changePage: (function(page) {this.setState({page:page});}).bind(this),
-    //   setAccount: (function(account) {this.setState({account:account})});
-    // }
+    var obj = {
+      changePage: (page) => this.setState({page:page}),
+      setAccount: (account) => this.setState({account:account})
+    }
+    Object.keys(obj).forEach(k => obj[k].bind(this));
+    return obj; 
   }
 
   render() {
     switch (this.state.page){
       case 'login':
-        return <LoginPage changePage={this.changePage.bind(this)} account={this.state.account} />;
+        return <LoginPage fns={this.getHelper()} account={this.state.account} />;
       case 'feed':
         return <NewsFeed account={this.state.account} />;
     }

@@ -15,15 +15,27 @@ export class LoginPage extends Component {
   }
 
   validateSignup(){
-    var t = this;
-    Object.keys(this.state).map(function (k) {
-      t.props.account[k] = t.state[k];
-    })
-    this.props.changePage('feed');
+    if (!(this.state.first &&
+        this.state.last &&
+        this.state.email &&
+        this.state.email2 &&
+        this.state.password)){
+      return this.setState({error:"You must enter a value for all fields."})
+    } else if (this.state.email !== this.state.email2){
+      return this.setState({error:"Passwords do not match."});
+    }
+
+    this.props.fns.setAccount({
+      first: this.state.first,
+      last: this.state.last,
+      email: this.state.email,
+      password: this.state.password
+    });
+    this.props.fns.changePage('feed');
   }
 
   validateLogin(){
-    this.props.changePage('feed');
+    this.props.fns.changePage('feed');
   }
 
   createInput(formName, niceName) {
@@ -72,8 +84,8 @@ export class LoginPage extends Component {
             marginLeft:'auto',
             marginRight:'50px',
             display:'flex'}}>
-          <input type='text' placeholder='Username' style={{paddingLeft:'5px',marginRight:'10px'}}/>
-          <input type='text' placeholder='Password' style={{paddingLeft:'5px',marginRight:'10px'}}/>
+          <input type='text' placeholder='Username' style={{height:'25px',paddingLeft:'5px',marginRight:'10px'}}/>
+          <input type='text' placeholder='Password' style={{height:'25px',paddingLeft:'5px',marginRight:'10px'}}/>
           <div style={{
               padding:'5px',
               backgroundColor:'#4c69ba',
@@ -94,6 +106,7 @@ export class LoginPage extends Component {
         marginRight:'50px',
       }}>
         <div style={{fontWeight:'bold',fontSize:'250%',marginBottom:'20px'}}>Sign Up</div>
+        <span style={{color:'red'}}>{this.state.error}</span>
         <div style={{display:'flex'}}>
           {this.createInput('first', 'First name')}
           &nbsp;&nbsp;
