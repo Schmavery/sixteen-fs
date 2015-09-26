@@ -20,12 +20,13 @@ export class Hover extends Component {
     }
   }
   render(){
-    var s = this.state.hover ? {...this.props.style,...this.props.common,overflow:'hidden'} :
-                {...this.props.common,overflow:'hidden'};
+    var s = this.state.hover ? {...this.props.style,...this.props.hover,overflow:'hidden'} :
+                {...this.props.style,...this.props.noHover,overflow:'hidden'};
     return (
       <div
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
+        onClick={this.props.onClick}
         style={s}>
         {this.props.children}
       </div>);
@@ -46,7 +47,7 @@ export class Rule extends Component {
 export class VertRule extends Component {
   render() {
     return (
-      <div style={{borderLeft:"1px solid",height:"1.5em",borderColor:this.props.color}} />);
+      <div style={{borderLeft:'1px solid',height:'1.5em',borderColor:this.props.color}} />);
   }
 }
 
@@ -75,8 +76,14 @@ export class Image extends Component {
 
 export class NameTag extends Component {
   render() {
-    return (<Hover style={{textDecoration:"underline"}} common={{color:'#355089',fontWeight:'bold'}}>
+    return (<Hover hover={{textDecoration:'underline'}} style={{color:'#355089',fontWeight:'bold'}}>
       {this.props.name}
     </Hover>);
+  }
+}
+
+export function partial(fn, arg1){
+  return function(){
+    return
   }
 }

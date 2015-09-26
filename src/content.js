@@ -5,11 +5,11 @@ var f16 = 'ffffffffffffffff';
 class PersonBrief extends Component {
   render () {
     return (
-      <div style={{display:'flex', marginBottom:"15px"}}>
-        <Image style={{width:"40px",height:"40px",backgroundColor:"red"}} />
-        <div style={{display:'flex', flexDirection:'column', marginLeft:"10px"}}>
+      <div style={{display:'flex', marginBottom:'15px'}}>
+        <Image style={{width:'40px',height:'40px',backgroundColor:'red'}} />
+        <div style={{display:'flex', flexDirection:'column', marginLeft:'10px'}}>
           <NameTag name='FirstName LastName'/>
-          <Hover style={{textDecoration:"underline"}} common={{color:'#9197a3', marginTop:"2px"}}>
+          <Hover hover={{textDecoration:'underline'}} style={{color:'#9197a3',marginTop:'2px'}}>
             5 hrs · Montreal, Quebec
           </Hover>
         </div>

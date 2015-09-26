@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Hover, Image, VertRule} from './util';
-var f16 = 'ffffffffffffffff';
 
 export class HeaderBar extends Component {
   render() {
@@ -24,7 +23,7 @@ export class HeaderBar extends Component {
         marginTop:'-12px',
         fontSize:'220%'
       }}>
-        {f16}
+        {this.props.account.siteName}
       </div>
     </div>);
     return (
@@ -45,7 +44,7 @@ export class HeaderBar extends Component {
         zIndex: 99,
         alignItems: 'center'}}>
         {logo}
-        <input type='text' placeholder={'Search '+f16} style={{
+        <input type='text' placeholder={'Search '+this.props.account.siteName} style={{
           height:'25px',
           width:'400px',
           borderRadius:'3px',
@@ -54,7 +53,7 @@ export class HeaderBar extends Component {
           outline:'0px',
           border:'none'
         }}/>
-        <HeaderMenu />
+        <HeaderMenu account={this.props.account}/>
       </div>);
   }
 }
@@ -68,15 +67,15 @@ class HeaderMenu extends Component {
       marginRight:'30px',
       display:'flex',
       flexDirection: 'row',
-      alignItems:"center"
+      alignItems:'center'
       }}>
-        <Hover style={{backgroundColor:'#355089',borderRadius:'3px',cursor:'pointer'}}
-               common={{display:'flex',flexDirection:'row',alignItems:"center"}}>
-          <Image style={{width:"23px",height:"23px",margin:"4px",backgroundColor:'red'}} />
-          <div style={{marginRight:'10px',padding:'5px',paddingRight:'0px'}}>FirstName</div>
+        <Hover hover={{backgroundColor:'#355089',borderRadius:'3px',cursor:'pointer'}}
+               style={{display:'flex',flexDirection:'row',alignItems:'center'}}>
+          <Image style={{width:'23px',height:'23px',margin:'4px',backgroundColor:'red'}} />
+          <div style={{marginRight:'10px',padding:'5px',paddingRight:'0px'}}>{this.props.account.first}</div>
         </Hover>
           <VertRule color={'#355089'} />
-        <Hover style={{backgroundColor:'#355089',borderRadius:'3px',cursor:'pointer'}}>
+        <Hover hover={{backgroundColor:'#355089',borderRadius:'3px',cursor:'pointer'}}>
           <div style={{marginRight:'10px',padding:'5px',paddingLeft:'10px'}}>Home</div>
         </Hover>
       </div>;

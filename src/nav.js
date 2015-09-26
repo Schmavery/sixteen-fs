@@ -5,9 +5,9 @@ var f16 = 'ffffffffffffffff';
 class NavListTopItem extends Component {
   render() {
     return (
-      <Hover style={{textDecoration:"underline"}}
-        common={{display:'flex',flexDirection:'row',alignItems:"center",cursor:'pointer'}}>
-        <Image style={{width:"20px",height:"20px",margin:"4px",backgroundColor:'red'}} />
+      <Hover hover={{textDecoration:'underline'}}
+        style={{display:'flex',flexDirection:'row',alignItems:'center',cursor:'pointer'}}>
+        <Image style={{width:'20px',height:'20px',margin:'4px',backgroundColor:'red'}} />
         <div style={{
           float:'left',
           clear:'left',
@@ -24,9 +24,9 @@ class NavListTopItem extends Component {
 class NavListItem extends Component {
   render() {
     return (
-      <Hover style={{backgroundColor:'#dcdee3',borderRadius:'3px',}}
-        common={{display:'flex',flexDirection:'row',alignItems:"center",cursor:'pointer'}}>
-        <Image style={{width:"20px",height:"20px",margin:"4px",backgroundColor:'red'}} />
+      <Hover hover={{backgroundColor:'#dcdee3',borderRadius:'3px',}}
+        style={{display:'flex',flexDirection:'row',alignItems:'center',cursor:'pointer'}}>
+        <Image style={{width:'20px',height:'20px',margin:'4px',backgroundColor:'red'}} />
         <div style={{
           float:'left',
           clear:'left',
@@ -66,7 +66,7 @@ export class NavBar extends Component {
     var text = this.props.text;
     return (
     <span>
-      <NavListTopItem text='First Last'/>
+      <NavListTopItem text={this.props.account.first + " " + this.props.account.last}/>
       <NavListTopItem text='Edit Profile'/>
       <NavTitle text='favourites'/>
       <NavListItem text='News Feed'/>
