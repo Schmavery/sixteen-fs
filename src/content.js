@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Hover, ContentWrapper, Rule, Image, VertRule, NameTag} from './util';
+import Util, {Hover, ContentWrapper, Rule, Image, VertRule, NameTag} from './util';
 var f16 = 'ffffffffffffffff';
 
 class PersonBrief extends Component {
@@ -105,7 +105,8 @@ export class NewStatus extends Component {
             width:'100%',
             border:'0px',
             outline:'0px',
-            resize:'none'}} placeholder={'What\'s on your mind?'}/>
+            resize:'none'}} placeholder={'What\'s on your mind?'}
+            onChange={(e) => this.setState({'new-status':e.target.value})}/>
         </div>
         <Rule />
         <div style={{display:'flex', flexDirection:'row'}}>

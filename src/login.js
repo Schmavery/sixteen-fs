@@ -35,10 +35,9 @@ export class LoginPage extends Component {
   }
 
   validateLogin(){
-    console.log(this.state);
     if (!(this.state['login-email'] && this.state['login-password'])){
       return;
-    } else if (this.state['login-email'] !== this.props.fns.getAccount().password){
+    } else if (this.state['login-password'] !== this.props.fns.getAccount().password){
       return;
     } else if (this.state['login-email'] !== this.props.fns.getAccount().email){
       return;

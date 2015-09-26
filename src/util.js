@@ -81,9 +81,3 @@ export class NameTag extends Component {
     </Hover>);
   }
 }
-
-export function partial(fn, arg1){
-  return function(){
-    return
-  }
-}
