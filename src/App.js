@@ -14,29 +14,19 @@ export class App extends Component {
         last: "Zuckerberg"
       }
     };
-    this.changePage = this.changePage.bind(this);
-    this.getHelper = this.getHelper.bind(this);
-  }
-
-  changePage(page) {
-    this.setState({page:page});
-  }
-
-  getHelper(){
-    var obj = {
+    this.helper = {
       changePage: (page) => this.setState({page:page}),
-      setAccount: (account) => this.setState({account:account})
+      setAccount: (account) => this.setState({account:account}),
+      getAccount: () => this.state.account
     }
-    Object.keys(obj).forEach(k => obj[k].bind(this));
-    return obj; 
+    Object.keys(this.helper).forEach(k => this.helper[k].bind(this));
   }
-
   render() {
     switch (this.state.page){
       case 'login':
-        return <LoginPage fns={this.getHelper()} account={this.state.account} />;
+        return <LoginPage fns={this.helper} />;
       case 'feed':
-        return <NewsFeed account={this.state.account} />;
+        return <NewsFeed fns={this.helper} />;
     }
   }
 }

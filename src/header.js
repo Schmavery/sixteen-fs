@@ -23,7 +23,7 @@ export class HeaderBar extends Component {
         marginTop:'-12px',
         fontSize:'220%'
       }}>
-        {this.props.account.siteName}
+        {this.props.fns.getAccount().siteName}
       </div>
     </div>);
     return (
@@ -44,7 +44,7 @@ export class HeaderBar extends Component {
         zIndex: 99,
         alignItems: 'center'}}>
         {logo}
-        <input type='text' placeholder={'Search '+this.props.account.siteName} style={{
+        <input type='text' placeholder={'Search '+this.props.fns.getAccount().siteName} style={{
           height:'25px',
           width:'400px',
           borderRadius:'3px',
@@ -53,7 +53,7 @@ export class HeaderBar extends Component {
           outline:'0px',
           border:'none'
         }}/>
-        <HeaderMenu account={this.props.account}/>
+        <HeaderMenu fns={this.props.fns}/>
       </div>);
   }
 }
@@ -72,11 +72,16 @@ class HeaderMenu extends Component {
         <Hover hover={{backgroundColor:'#355089',borderRadius:'3px',cursor:'pointer'}}
                style={{display:'flex',flexDirection:'row',alignItems:'center'}}>
           <Image style={{width:'23px',height:'23px',margin:'4px',backgroundColor:'red'}} />
-          <div style={{marginRight:'10px',padding:'5px',paddingRight:'0px'}}>{this.props.account.first}</div>
+          <div style={{marginRight:'10px',padding:'5px',paddingRight:'0px'}}>{this.props.fns.getAccount().first}</div>
         </Hover>
-          <VertRule color={'#355089'} />
+        <VertRule color={'#355089'} />
         <Hover hover={{backgroundColor:'#355089',borderRadius:'3px',cursor:'pointer'}}>
           <div style={{marginRight:'10px',padding:'5px',paddingLeft:'10px'}}>Home</div>
+        </Hover>
+        <VertRule color={'#355089'} />
+        <Hover hover={{backgroundColor:'#355089',borderRadius:'3px',cursor:'pointer'}}>
+          <div style={{marginRight:'10px',padding:'5px',paddingLeft:'10px'}}
+          onClick={this.props.fns.changePage.bind(null,'login')}>Logout</div>
         </Hover>
       </div>;
   }

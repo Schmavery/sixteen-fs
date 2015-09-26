@@ -25,7 +25,7 @@ export class NewsFeed extends Component {
           width:'100%',
           fontSize:'90%',
           fontFamily:'sans-serif'}}>
-        <HeaderBar account={this.props.account}/>
+        <HeaderBar fns={this.props.fns}/>
         <div style={{
             display:'flex',
             flexDirection: 'row',
@@ -45,7 +45,7 @@ export class NewsFeed extends Component {
           <div style={{flex:'0 1 5em',order:-2, width:'5em'}}>
           </div>
           <div style={{order: -1, flex:'0 0 12em'}}>
-            <NavBar account={this.props.account}/>
+            <NavBar fns={this.props.fns}/>
           </div>
           <div style={{flex:'0 0 20em'}}>
             <AdsBar num={1}/>

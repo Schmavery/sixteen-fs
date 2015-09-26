@@ -22,7 +22,7 @@ export class LoginPage extends Component {
         this.state.password)){
       return this.setState({error:"You must enter a value for all fields."})
     } else if (this.state.email !== this.state.email2){
-      return this.setState({error:"Passwords do not match."});
+      return this.setState({error:"Emails do not match."});
     }
 
     this.props.fns.setAccount({
@@ -35,10 +35,18 @@ export class LoginPage extends Component {
   }
 
   validateLogin(){
+    console.log(this.state);
+    if (!(this.state['login-email'] && this.state['login-password'])){
+      return;
+    } else if (this.state['login-email'] !== this.props.fns.getAccount().password){
+      return;
+    } else if (this.state['login-email'] !== this.props.fns.getAccount().email){
+      return;
+    }
     this.props.fns.changePage('feed');
   }
 
-  createInput(formName, niceName) {
+  createInput(formName, niceName, style) {
     var t = this;
     return (
         <input type='text' placeholder={niceName} style={{
@@ -77,15 +85,18 @@ export class LoginPage extends Component {
             fontWeight:'bold',
             letterSpacing:'2px',
             marginTop:'20px',
-            marginLeft:'60px'}}>
-          {this.props.account.siteName}
+            marginLeft:'60px'}}
+            onClick={this.props.fns.changePage.bind(null,'feed')}>
+          {this.props.fns.getAccount().siteName}
         </div>
         <div style={{
             marginLeft:'auto',
             marginRight:'50px',
             display:'flex'}}>
-          <input type='text' placeholder='Username' style={{height:'25px',paddingLeft:'5px',marginRight:'10px'}}/>
-          <input type='text' placeholder='Password' style={{height:'25px',paddingLeft:'5px',marginRight:'10px'}}/>
+          <input type='text' placeholder='Email' style={{height:'25px',paddingLeft:'5px',marginRight:'10px'}}
+              onChange={(e) => this.setState({'login-email':e.target.value})}/>
+          <input type='text' placeholder='Password' style={{height:'25px',paddingLeft:'5px',marginRight:'10px'}}
+              onChange={(e) => this.setState({'login-password':e.target.value})}/>
           <div style={{
               padding:'5px',
               backgroundColor:'#4c69ba',
@@ -160,7 +171,7 @@ export class LoginPage extends Component {
                 paddingLeft:'100px',
                 paddingRight:'180px'}}>
               Connect with friends and the
-              world around you on {this.props.account.siteName}.</div>
+              world around you on {this.props.fns.getAccount().siteName}.</div>
           </div>
           <div style={{order: 2, flex:'0 0 40%'}}>
             {signupForm}

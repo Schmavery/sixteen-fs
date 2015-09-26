@@ -66,7 +66,7 @@ export class NavBar extends Component {
     var text = this.props.text;
     return (
     <span>
-      <NavListTopItem text={this.props.account.first + " " + this.props.account.last}/>
+      <NavListTopItem text={this.props.fns.getAccount().first + " " + this.props.fns.getAccount().last}/>
       <NavListTopItem text='Edit Profile'/>
       <NavTitle text='favourites'/>
       <NavListItem text='News Feed'/>
