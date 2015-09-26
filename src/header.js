@@ -16,7 +16,6 @@ export class HeaderBar extends Component {
       <div style={{
         color:'#3b5998',
         fontFamily:'sans-serif',
-        fontSize:'1.5em',
         fontWeight:'bold',
         position:'relative',
         top:'10px',
@@ -28,17 +27,15 @@ export class HeaderBar extends Component {
     </div>);
     return (
       <div style={{
-        position:'relative',
+        position:'fixed',
         display:'flex',
         flexDirection: 'row',
         width:'100%',
-        position:'fixed',
         backgroundColor:'#3b5998',
         color:'#f7f7f7',
         order:'-2',
         padding:'10',
         margin: 0,
-        position: 'fixed',
         top: 0,
         left: 0,
         zIndex: 99,

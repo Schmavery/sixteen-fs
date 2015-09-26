@@ -9,9 +9,9 @@ export class App extends Component {
     this.state = {
       page: 'login',
       account: {
-        siteName: "ffffffffffffffff",
-        first: "Mark",
-        last: "Zuckerberg"
+        siteName: 'ffffffffffffffff',
+        first: 'Mark',
+        last: 'Zuckerberg'
       }
     };
     this.helper = {
