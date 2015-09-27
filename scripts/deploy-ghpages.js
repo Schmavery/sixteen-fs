@@ -1,9 +1,12 @@
 var ghpages = require('gh-pages');
 var fs = require('fs');
-var str = `
-  <!doctype html><html><head><title>ffffffffffffffff</title>
-  <style type='text/css'> body { margin:0; } </style></head><body>
-  <div id='root'></div><script src='./bundle.js'></script></body></html>
-`;
-fs.writeFileSync('./dist/index.html', str);
+
+function copyFolder( source, target ) {
+  files = fs.readdirSync( source );
+  files.forEach( function ( file ) {
+      copyFileSync(path.join( source, file ), targetFolder );
+  } );
+}
+
+copyFolder('assets','dist');
 ghpages.publish('./dist', console.error.bind(console));
