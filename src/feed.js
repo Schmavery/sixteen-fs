@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Hover, Rule} from './util';
+import Util, {Hover, Rule} from './util';
 import {HeaderBar} from './header';
 import {Post, Ad, AdFooter, NewStatus} from './content';
 import {NavBar} from './nav';

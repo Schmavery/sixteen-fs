@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Hover, Image, VertRule} from './util';
+import Util, {Hover, Image, VertRule} from './util';
 
 export class HeaderBar extends Component {
   render() {

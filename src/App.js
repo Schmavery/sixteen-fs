@@ -1,5 +1,5 @@
 import React, { Component } from 'react/addons';
-import {Hover, Rule} from './util';
+import Util, {Hover, Rule} from './util';
 import {NewsFeed} from './feed'
 import {LoginPage} from './login'
 
