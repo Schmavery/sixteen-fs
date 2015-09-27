@@ -60,7 +60,7 @@ export class LoginPage extends Component {
           fontSize:'120%',
           marginTop:'5px',
           marginBottom:'5px',
-          display:'inline-block',
+          display:'block',
           height:'40px',
           paddingLeft:'10px',
           outline:'0',
@@ -144,8 +144,7 @@ export class LoginPage extends Component {
         flexDirection: Util.flexDirection('column'), padding:'30px'}}>
         <div style={{
           fontWeight: 'bold',
-          fontSize: '250%',
-          // marginBottom: '20px'
+          fontSize: '250%'
         }}>
           Sign Up
         </div>
@@ -160,10 +159,7 @@ export class LoginPage extends Component {
         {this.createInput('email2', 'Re-enter email')}
         {this.createInput('password', 'New password')}
         <div style={{
-          // marginRight: '50px',
-          // marginLeft: '5px',
           marginTop: '20px',
-          // fontSize: '70%'
         }}>
         By clicking Sign Up, you agree to our Terms and that you have read our Data Policy, including our Cookie Use.
         </div>
