@@ -19,7 +19,7 @@ export class NewsFeed extends Component {
     return (
       <div style={{
           display:Util.flex,
-          flexDirection:'column',
+          flexDirection:Util.flexDirection('column'),
           backgroundColor:'#e9eaed',
           overflow:'hidden',
           width:'100%',
@@ -28,7 +28,7 @@ export class NewsFeed extends Component {
         <HeaderBar fns={this.props.fns}/>
         <div style={{
             display:Util.flex,
-            flexDirection: 'row',
+            flexDirection:Util.flexDirection('row'),
             flex:1,
             top:'60px',
             position:'relative'}}>

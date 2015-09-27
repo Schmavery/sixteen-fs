@@ -7,7 +7,7 @@ class PersonBrief extends Component {
     return (
       <div style={{display:Util.flex, marginBottom:'15px'}}>
         <Image style={{width:'40px',height:'40px',backgroundColor:'red'}} />
-        <div style={{display:Util.flex, flexDirection:'column', marginLeft:'10px'}}>
+        <div style={{display:Util.flex, flexDirection:Util.flexDirection('column'), marginLeft:'10px'}}>
           <NameTag name='FirstName LastName'/>
           <Hover hover={{textDecoration:'underline'}} style={{color:'#9197a3',marginTop:'2px'}}>
             5 hrs · Montreal, Quebec
@@ -97,7 +97,7 @@ export class NewStatus extends Component {
           <div style={{marginLeft:'5px',marginRight:'10px',fontWeight:'bold'}}>Create Photo Album</div>
         </span>
         <Rule />
-        <div style={{display:Util.flex, flexDirection:'row'}}>
+        <div style={{display:Util.flex, flexDirection:Util.flexDirection('row')}}>
           <Image style={{margin:'5px',width:'40px',height:'40px',backgroundColor:'red'}} />
           <textarea style={{
             marginTop:'10px',
@@ -109,7 +109,7 @@ export class NewStatus extends Component {
             onChange={(e) => this.setState({'new-status':e.target.value})}/>
         </div>
         <Rule />
-        <div style={{display:Util.flex, flexDirection:'row'}}>
+        <div style={{display:Util.flex, flexDirection:Util.flexDirection('row')}}>
           <div style={{
             marginLeft:'auto',
             padding:'5px',

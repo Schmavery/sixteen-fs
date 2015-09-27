@@ -71,7 +71,7 @@ export class LoginPage extends Component {
     var loginHeader = (
       <div style={{
           display:Util.flex,
-          flexDirection: 'row',
+          flexDirection:Util.flexDirection('row'),
           width:'100%',
           backgroundColor:'#3b5998',
           color:'#f7f7f7',
@@ -112,7 +112,7 @@ export class LoginPage extends Component {
     var signupForm = (
       <div style={{
         display:Util.flex,
-        flexDirection:'column',
+        flexDirection:Util.flexDirection('column'),
         marginRight:'50px',
       }}>
         <div style={{fontWeight:'bold',fontSize:'250%',marginBottom:'20px'}}>Sign Up</div>
@@ -151,7 +151,7 @@ export class LoginPage extends Component {
     return (
       <div style={{
           display:Util.flex,
-          flexDirection:'column',
+          flexDirection:Util.flexDirection('column'),
           backgroundColor:'#e9eaed',
           overflow:'hidden',
           minHeight: '100vh',
@@ -160,7 +160,7 @@ export class LoginPage extends Component {
         {loginHeader}
         <div style={{
             display:Util.flex,
-            flexDirection: 'row',
+            flexDirection:Util.flexDirection('row'),
             top:'50px',
             position:'relative'}}>
           <div style={{flex:'0 0 60%'}}>

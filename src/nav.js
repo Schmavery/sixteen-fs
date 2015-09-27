@@ -6,7 +6,7 @@ class NavListTopItem extends Component {
   render() {
     return (
       <Hover hover={{textDecoration:'underline'}}
-        style={{display:Util.flex,flexDirection:'row',alignItems:'center',cursor:'pointer'}}>
+        style={{display:Util.flex,flexDirection:Util.flexDirection('row'),alignItems:'center',cursor:'pointer'}}>
         <Image style={{width:'20px',height:'20px',margin:'4px',backgroundColor:'red'}} />
         <div style={{
           float:'left',
@@ -25,7 +25,7 @@ class NavListItem extends Component {
   render() {
     return (
       <Hover hover={{backgroundColor:'#dcdee3',borderRadius:'3px',}}
-        style={{display:Util.flex,flexDirection:'row',alignItems:'center',cursor:'pointer'}}>
+        style={{display:Util.flex,flexDirection:Util.flexDirection('row'),alignItems:'center',cursor:'pointer'}}>
         <Image style={{width:'20px',height:'20px',margin:'4px',backgroundColor:'red'}} />
         <div style={{
           float:'left',

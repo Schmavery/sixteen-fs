@@ -83,4 +83,5 @@ export class NameTag extends Component {
 }
 
 var flex = 'flex;display:-webkit-flex;display:-ms-flexbox';
-export default {flex};
+var flexDirection = (d) => d+';-webkit-flex-direction:'+d+'';
+export default {flex, flexDirection};
