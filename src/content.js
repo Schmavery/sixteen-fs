@@ -5,11 +5,23 @@ var f16 = 'ffffffffffffffff';
 class PersonBrief extends Component {
   render () {
     return (
-      <div style={{display:Util.flex, marginBottom:'15px'}}>
-        <Image style={{width:'40px',height:'40px',backgroundColor:'red'}} />
-        <div style={{display:Util.flex, flexDirection:Util.flexDirection('column'), marginLeft:'10px'}}>
-          <NameTag name='FirstName LastName'/>
-          <Hover hover={{textDecoration:'underline'}} style={{color:'#9197a3',marginTop:'2px'}}>
+      <div style={{
+        display: Util.flex,
+        marginBottom: '15px'}}>
+        <Image style={{
+          width: '40px',
+          height: '40px',
+          backgroundColor: 'red'}} />
+        <div style={{
+          display: Util.flex,
+          flexDirection: Util.flexDirection('column'),
+          marginLeft: '10px'}}>
+          <NameTag name="FirstName LastName"/>
+          <Hover
+            hover={{textDecoration: 'underline'}}
+            style={{
+              color: '#9197a3',
+              marginTop: '2px'}}>
             5 hrs · Montreal, Quebec
           </Hover>
         </div>
@@ -21,7 +33,12 @@ class PersonBrief extends Component {
 class FeedBackSection extends Component {
   render () {
     return  (
-      <div style={{color:'#9197a3',fontWeight:'bold'}}><Rule />Like  -  Comment  -  Share</div>
+      <div style={{
+        color: '#9197a3',
+        fontWeight: 'bold'}}>
+        <Rule />
+        Like  -  Comment  -  Share
+      </div>
     );
   }
 }
@@ -32,7 +49,9 @@ export class Post extends Component {
       <ContentWrapper>
       {this.props.liked ?
         <span>
-          <div style={{display:Util.flex,alignItems:'center'}}>
+          <div style={{
+            display: Util.flex,
+            alignItems: 'center'}}>
             <NameTag name={this.props.liked}/>
             <div>&nbsp;liked this.</div>
           </div>
@@ -56,7 +75,12 @@ export class Ad extends Component {
   render () {
     return (
       <ContentWrapper>
-        <span style={{fontWeight:'bold',color:'#9197a3'}}>TRENDING</span>
+        <span style={{
+          fontWeight: 'bold',
+          color: '#9197a3'}}>
+          TRENDING
+        </span>
+
         <Rule />
         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
         sed do eiusmod tempor incididunt ut labore et dolore magna
@@ -73,10 +97,13 @@ export class Ad extends Component {
 export class AdFooter extends Component {
   render () {
     return (
-      <div style={{marginLeft:'20px',fontSize:'90%',color:'#9197a3'}}>
-      English (US) · Privacy · Terms · Cookies · Advertising · Ad Choices ·
-      More <br />
-      {f16} © 2015
+      <div style={{
+        marginLeft: '20px',
+        fontSize: '90%',
+        color: '#9197a3'}}>
+        English (US) · Privacy · Terms · Cookies · Advertising · Ad Choices ·
+        More <br />
+        {f16} © 2015
       </div>
     );
   }
@@ -86,30 +113,70 @@ export class NewStatus extends Component {
   render () {
     return (
       <ContentWrapper>
-        <span style={{display:Util.flex,alignItems:'center',fontSize:'90%'}}>
-          <Image style={{width:'20px',height:'20px',backgroundColor:'red'}} />
-          <div style={{marginLeft:'5px',marginRight:'10px',fontWeight:'bold'}}>Update Status</div>
+        <span style={{
+          display: Util.flex,
+          alignItems: 'center',
+          fontSize: '90%'}}>
+          <Image style={{
+            width: '20px',
+            height: '20px',
+            backgroundColor: 'red'}} />
+          <div style={{
+            marginLeft: '5px',
+            marginRight: '10px',
+            fontWeight: 'bold'}}>
+            Update Status
+          </div>
           <VertRule color='#e9eaed' />
-          <Image style={{marginLeft:'10px',width:'20px',height:'20px',backgroundColor:'red'}} />
-          <div style={{marginLeft:'5px',marginRight:'10px',fontWeight:'bold'}}>Add Photos/Video</div>
+          <Image style={{
+            marginLeft: '10px',
+            width: '20px',
+            height: '20px',
+            backgroundColor: 'red'}} />
+          <div style={{
+            marginLeft: '5px',
+            marginRight: '10px',
+            fontWeight: 'bold'}}>
+            Add Photos/Video
+          </div>
           <VertRule color='#e9eaed' />
-          <Image style={{marginLeft:'10px',width:'20px',height:'20px',backgroundColor:'red'}} />
-          <div style={{marginLeft:'5px',marginRight:'10px',fontWeight:'bold'}}>Create Photo Album</div>
+          <Image style={{
+            marginLeft: '10px',
+            width: '20px',
+            height: '20px',
+            backgroundColor: 'red'}} />
+          <div style={{
+            marginLeft: '5px',
+            marginRight: '10px',
+            fontWeight: 'bold'}}>
+            Create Photo Album
+          </div>
         </span>
         <Rule />
-        <div style={{display:Util.flex, flexDirection:Util.flexDirection('row')}}>
-          <Image style={{margin:'5px',width:'40px',height:'40px',backgroundColor:'red'}} />
-          <textarea style={{
-            marginTop:'10px',
-            minHeight:'50px',
-            width:'100%',
-            border:'0px',
-            outline:'0px',
-            resize:'none'}} placeholder={'What\'s on your mind?'}
+        <div style={{
+          display: Util.flex,
+          flexDirection: Util.flexDirection('row')}}>
+          <Image style={{
+            margin: '5px',
+            width: '40px',
+            height: '40px',
+            backgroundColor: 'red'}} />
+          <textarea
+            style={{
+              marginTop: '10px',
+              minHeight: '50px',
+              width: '100%',
+              border: '0px',
+              outline: '0px',
+              resize: 'none'
+            }}
+            placeholder="Whats on your mind?"
             onChange={(e) => this.setState({'new-status':e.target.value})}/>
         </div>
         <Rule />
-        <div style={{display:Util.flex, flexDirection:Util.flexDirection('row')}}>
+        <div style={{
+          display: Util.flex,
+          flexDirection: Util.flexDirection('row')}}>
           <div style={{
             marginLeft:'auto',
             padding:'5px',
@@ -118,7 +185,9 @@ export class NewStatus extends Component {
             backgroundColor:'#3b5998',
             color:'#fff',
             fontWeight:'bold',
-            borderRadius:'2px'}}>Post</div>
+            borderRadius:'2px'}}>
+            Post
+          </div>
         </div>
       </ContentWrapper>
     );

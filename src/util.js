@@ -20,8 +20,23 @@ export class Hover extends Component {
     }
   }
   render(){
-    var s = this.state.hover ? {...this.props.style,...this.props.hover,overflow:'hidden'} :
-                {...this.props.style,...this.props.noHover,overflow:'hidden'};
+    var {hover: isHover} = this.state;
+    var {hover, style, noHover, onClick, children} = this.props;
+
+    var s = {
+      ...style,
+      ...noHover,
+      overflow:'hidden'
+    };
+
+    if (isHover) {
+      s = {
+        ...style,
+        ...hover,
+        overflow:'hidden'
+      };
+    }
+
     return (
       <div
         onMouseEnter={this.onMouseEnter}
@@ -37,32 +52,38 @@ export class Rule extends Component {
   render() {
     return (
       <hr style={{
-        border:0,
-        height:0,
-        width:'100%',
-        borderTop:'1px solid #e9eaed'}} />);
+        border: 0,
+        height: 0,
+        width: '100%',
+        borderTop: '1px solid #e9eaed'}} />
+    );
   }
 }
 
 export class VertRule extends Component {
   render() {
     return (
-      <div style={{borderLeft:'1px solid',height:'1.5em',borderColor:this.props.color}} />);
+      <div style={{
+        borderLeft: '1px solid',
+        height: '1.5em',
+        borderColor: this.props.color}} />
+    );
   }
 }
 
 export class ContentWrapper extends Component {
   render() {
-    return (<div style={{
-      backgroundColor:'#fff',
-      padding:'10px',
-      margin: '10px',
-      marginLeft:'10px',
-      borderRadius:'3px',
-      border:'1px solid #dfe3ee',
-    }}>
-      {this.props.children}
-    </div>);
+    return (
+      <div style={{
+        backgroundColor: '#fff',
+        padding: '10px',
+        margin:  '10px',
+        marginLeft: '10px',
+        borderRadius: '3px',
+        border: '1px solid #dfe3ee',}}>
+        {this.props.children}
+      </div>
+    );
   }
 }
 
@@ -76,9 +97,18 @@ export class Image extends Component {
 
 export class NameTag extends Component {
   render() {
-    return (<Hover hover={{textDecoration:'underline'}} style={{color:'#355089',fontWeight:'bold'}}>
-      {this.props.name}
-    </Hover>);
+    return (
+      <Hover
+        hover={{
+          textDecoration: 'underline'
+        }}
+        style={{
+          color: '#355089',
+          fontWeight: 'bold'
+        }}>
+        {this.props.name}
+      </Hover>
+    );
   }
 }
 

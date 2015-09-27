@@ -18,23 +18,23 @@ export class NewsFeed extends Component {
   render() {
     return (
       <div style={{
-          display:Util.flex,
-          flexDirection:Util.flexDirection('column'),
-          backgroundColor:'#e9eaed',
-          overflow:'hidden',
-          width:'100%',
-          fontSize:'90%',
-          fontFamily:'sans-serif'}}>
+        display: Util.flex,
+        flexDirection: Util.flexDirection('column'),
+        backgroundColor: '#e9eaed',
+        overflow: 'hidden',
+        width: '100%',
+        fontSize: '90%',
+        fontFamily: 'sans-serif'}}>
         <HeaderBar fns={this.props.fns}/>
         <div style={{
-            display:Util.flex,
-            flexDirection:Util.flexDirection('row'),
-            flex:1,
-            top:'60px',
-            position:'relative'}}>
-          <div style={{flex:'0 0 35em'}}>
+          display: Util.flex,
+          flexDirection: Util.flexDirection('row'),
+          flex: 1,
+          top: '60px',
+          position: 'relative'}}>
+          <div style={{flex: '0 0 35em'}}>
             <NewStatus />
-            <Post liked={'Bob Joe'}/>
+            <Post liked="Bob Joe"/>
             <Post />
             <Post />
             <Post />
@@ -42,15 +42,22 @@ export class NewsFeed extends Component {
             <Post />
             <Post />
           </div>
-          <div style={{flex:'0 1 5em',order:-2, width:'5em'}}>
+          <div style={{
+            flex: '0 1 5em',
+            order: -2,
+            width: '5em'}}>
           </div>
-          <div style={{order: -1, flex:'0 0 12em'}}>
+          <div style={{
+            order: -1,
+            flex: '0 0 12em'}}>
             <NavBar fns={this.props.fns}/>
           </div>
-          <div style={{flex:'0 0 20em'}}>
+          <div style={{flex: '0 0 20em'}}>
             <AdsBar num={1}/>
           </div>
-          <div style={{flex:'0 1 10em', order:2}}>
+          <div style={{
+            flex: '0 1 10em',
+            order: 2}}>
           </div>
         </div>
       </div>

@@ -8,7 +8,13 @@ import {NavBar} from './nav';
 export class LoginPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {first:'',last:'',email:'',email2:'',password:''};
+    this.state = {
+      first:'',
+      last:'',
+      email:'',
+      email2:'',
+      password:''
+    };
     this.validateSignup = this.validateSignup.bind(this);
     this.validateLogin = this.validateLogin.bind(this);
     this.createInput = this.createInput.bind(this);
@@ -46,9 +52,11 @@ export class LoginPage extends Component {
   }
 
   createInput(formName, niceName, style) {
-    var t = this;
     return (
-        <input type='text' placeholder={niceName} style={{
+      <input
+        type='text'
+        placeholder={niceName}
+        style={{
           fontSize:'120%',
           marginTop:'10px',
           display:'block',
@@ -57,12 +65,13 @@ export class LoginPage extends Component {
           paddingLeft:'10px',
           outline:'0px',
           border:'1px solid lightgrey',
-          borderRadius:'5px'}}
-          onChange={function(e) {
-            var obj = {};
-            obj[formName] = e.target.value;
-            t.setState(obj);
-          }}/>
+          borderRadius:'5px'
+        }}
+        onChange={e =>
+          this.setState({
+            [formName]: e.target.value
+          })
+        }/>
     );
   }
 
@@ -70,39 +79,58 @@ export class LoginPage extends Component {
   render() {
     var loginHeader = (
       <div style={{
-          display:Util.flex,
-          flexDirection:Util.flexDirection('row'),
-          width:'100%',
-          backgroundColor:'#3b5998',
-          color:'#f7f7f7',
-          order:'-1',
-          padding:'10',
-          zIndex: 99,
-          alignItems: 'center'}}>
-        <div style={{
-            fontSize:'350%',
-            fontWeight:'bold',
-            letterSpacing:'2px',
-            marginTop:'20px',
-            marginLeft:'60px'}}
-            onClick={this.props.fns.changePage.bind(null,'feed')}>
+        display: Util.flex,
+        flexDirection: Util.flexDirection('row'),
+        width: '100%',
+        backgroundColor: '#3b5998',
+        color: '#f7f7f7',
+        order: '-1',
+        padding: '10',
+        zIndex: 99,
+        alignItems: 'center'}}>
+        <div
+          style={{
+            fontSize: '350%',
+            fontWeight: 'bold',
+            letterSpacing: '2px',
+            marginTop: '20px',
+            marginLeft: '60px'
+          }}
+          onClick={this.props.fns.changePage.bind(null,'feed')}>
           {this.props.fns.getAccount().siteName}
         </div>
         <div style={{
-            marginLeft:'auto',
-            marginRight:'50px',
-            display:Util.flex}}>
-          <input type='text' placeholder='Email' style={{height:'25px',paddingLeft:'5px',marginRight:'10px'}}
-              onChange={(e) => this.setState({'login-email':e.target.value})}/>
-          <input type='text' placeholder='Password' style={{height:'25px',paddingLeft:'5px',marginRight:'10px'}}
-              onChange={(e) => this.setState({'login-password':e.target.value})}/>
-          <div style={{
-              padding:'5px',
-              backgroundColor:'#4c69ba',
-              border:'1px solid #354c8c',
-              marginLeft:'auto',
-              marginRight:'50px',
-              cursor:'pointer'}} onClick={this.validateLogin}>
+          marginLeft: 'auto',
+          marginRight: '50px',
+          display: Util.flex}}>
+          <input
+            type="text"
+            placeholder="Email"
+            style={{
+              height: '25px',
+              paddingLeft: '5px',
+              marginRight: '10px'
+            }}
+            onChange={(e) => this.setState({'login-email': e.target.value})}/>
+          <input
+            type="text"
+            placeholder="Password"
+            style={{
+              height: '25px',
+              paddingLeft: '5px',
+              marginRight: '10px'
+            }}
+            onChange={(e) => this.setState({'login-password':e.target.value})}/>
+          <div
+            style={{
+              padding: '5px',
+              backgroundColor: '#4c69ba',
+              border: '1px solid #354c8c',
+              marginLeft: 'auto',
+              marginRight: '50px',
+              cursor: 'pointer'
+            }}
+            onClick={this.validateLogin}>
             Log In
           </div>
         </div>
@@ -111,12 +139,18 @@ export class LoginPage extends Component {
 
     var signupForm = (
       <div style={{
-        display:Util.flex,
-        flexDirection:Util.flexDirection('column'),
-        marginRight:'50px',
-      }}>
-        <div style={{fontWeight:'bold',fontSize:'250%',marginBottom:'20px'}}>Sign Up</div>
-        <span style={{color:'red'}}>{this.state.error}</span>
+        display: Util.flex,
+        flexDirection: Util.flexDirection('column'),
+        marginRight: '50px',}}>
+        <div style={{
+          fontWeight: 'bold',
+          fontSize: '250%',
+          marginBottom: '20px'}}>
+          Sign Up
+        </div>
+        <span style={{color:'red'}}>
+          {this.state.error}
+        </span>
         <div style={{display:Util.flex}}>
           {this.createInput('first', 'First name')}
           &nbsp;&nbsp;
@@ -125,52 +159,58 @@ export class LoginPage extends Component {
         {this.createInput('email', 'Email')}
         {this.createInput('email2', 'Re-enter email')}
         {this.createInput('password', 'New password')}
-        <div style={{marginRight:'50px',marginLeft:'5px',marginTop:'20px',fontSize:'70%'}}>
+        <div style={{
+          marginRight: '50px',
+          marginLeft: '5px',
+          marginTop: '20px',
+          fontSize: '70%'}}>
         By clicking Sign Up, you agree to our Terms and that you have read our Data Policy, including our Cookie Use.
         </div>
-        <Hover style={{
-            border:'1px solid #2c5115',
-            marginLeft:'5px',
-            marginTop:'20px',
-            borderRadius:'5px',
-            display:Util.flex,
-            justifyContent:'center',
-            alignItems:'center',
-            width:'200px',
-            height:'35px',
-            cursor:'pointer'
-            }}
-          hover={{backgroundColor:'#6bb933'}}
-          noHover={{backgroundColor:'#519f18'}} onClick={this.validateSignup}>
+        <Hover
+          style={{
+            border: '1px solid #2c5115',
+            marginLeft: '5px',
+            marginTop: '20px',
+            borderRadius: '5px',
+            display: Util.flex,
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '200px',
+            height: '35px',
+            cursor: 'pointer'
+          }}
+          hover={{backgroundColor: '#6bb933'}}
+          noHover={{backgroundColor: '#519f18'}}
+          onClick={this.validateSignup}>
           Sign Up
         </Hover>
       </div>
     );
 
-
     return (
       <div style={{
-          display:Util.flex,
-          flexDirection:Util.flexDirection('column'),
-          backgroundColor:'#e9eaed',
-          overflow:'hidden',
-          minHeight: '100vh',
-          width:'100%',
-          fontFamily:'sans-serif'}}>
+        display: Util.flex,
+        flexDirection: Util.flexDirection('column'),
+        backgroundColor: '#e9eaed',
+        overflow: 'hidden',
+        minHeight: '100vh',
+        width: '100%',
+        fontFamily: 'sans-serif'}}>
         {loginHeader}
         <div style={{
-            display:Util.flex,
-            flexDirection:Util.flexDirection('row'),
-            top:'50px',
-            position:'relative'}}>
+          display: Util.flex,
+          flexDirection: Util.flexDirection('row'),
+          top: '50px',
+          position: 'relative'}}>
           <div style={{flex:'0 0 60%'}}>
             <div style={{
-                fontWeight:'bold',
-                fontSize:'200%',
-                paddingLeft:'100px',
-                paddingRight:'180px'}}>
+              fontWeight: 'bold',
+              fontSize: '200%',
+              paddingLeft: '100px',
+              paddingRight: '180px'}}>
               Connect with friends and the
-              world around you on {this.props.fns.getAccount().siteName}.</div>
+              world around you on {this.props.fns.getAccount().siteName}.
+            </div>
           </div>
           <div style={{order: 2, flex:'0 0 40%'}}>
             {signupForm}

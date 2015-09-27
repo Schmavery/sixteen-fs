@@ -5,17 +5,29 @@ var f16 = 'ffffffffffffffff';
 class NavListTopItem extends Component {
   render() {
     return (
-      <Hover hover={{textDecoration:'underline'}}
-        style={{display:Util.flex,flexDirection:Util.flexDirection('row'),alignItems:'center',cursor:'pointer'}}>
-        <Image style={{width:'20px',height:'20px',margin:'4px',backgroundColor:'red'}} />
+      <Hover
+        hover={{textDecoration: 'underline'}}
+        style={{
+          display: Util.flex,
+          flexDirection: Util.flexDirection('row'),
+          alignItems: 'center',
+          cursor: 'pointer'
+        }}>
+        <Image style={{
+          width: '20px',
+          height: '20px',
+          margin: '4px',
+          backgroundColor: 'red'
+        }} />
         <div style={{
-          float:'left',
-          clear:'left',
-          fontFamily:'sans-serif',
-          fontWeight:'lighter',
-          padding:'3px',
-          marginRight:'10px'}}>
-        {this.props.text}
+          float: 'left',
+          clear: 'left',
+          fontFamily: 'sans-serif',
+          fontWeight: 'lighter',
+          padding: '3px',
+          marginRight: '10px'
+        }}>
+          {this.props.text}
         </div>
       </Hover>);
   }
@@ -24,9 +36,21 @@ class NavListTopItem extends Component {
 class NavListItem extends Component {
   render() {
     return (
-      <Hover hover={{backgroundColor:'#dcdee3',borderRadius:'3px',}}
-        style={{display:Util.flex,flexDirection:Util.flexDirection('row'),alignItems:'center',cursor:'pointer'}}>
-        <Image style={{width:'20px',height:'20px',margin:'4px',backgroundColor:'red'}} />
+      <Hover
+        hover={{
+          backgroundColor:'#dcdee3',
+          borderRadius:'3px',
+        }}
+        style={{
+          display:Util.flex,
+          flexDirection:Util.flexDirection('row'),
+          alignItems:'center',
+          cursor:'pointer'}}>
+        <Image style={{
+          width:'20px',
+          height:'20px',
+          margin:'4px',
+          backgroundColor:'red'}} />
         <div style={{
           float:'left',
           clear:'left',
@@ -34,9 +58,10 @@ class NavListItem extends Component {
           fontWeight:'lighter',
           padding:'3px',
           marginRight:'10px'}}>
-        {this.props.text}
+          {this.props.text}
         </div>
-      </Hover>);
+      </Hover>
+    );
   }
 }
 
