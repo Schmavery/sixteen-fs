@@ -82,10 +82,10 @@ export class LoginPage extends Component {
       <div style={{
         display: Util.flex,
         flexDirection: Util.flexDirection('row'),
-        width: '100%',
         backgroundColor: '#3b5998',
         color: '#f7f7f7',
-        order: '-1',
+        // justifyContent: 'space-between',
+        // order: '-1',
         padding: '10',
         zIndex: 99,
         alignItems: 'center'}}>
@@ -101,7 +101,7 @@ export class LoginPage extends Component {
           {this.props.fns.getAccount().siteName}
         </div>
         <div style={{
-          margin: 'auto',
+          margin: 'auto 0',
           height: '30px',
           display: Util.flex}}>
           <input
@@ -144,7 +144,8 @@ export class LoginPage extends Component {
         flexDirection: Util.flexDirection('column'), padding:'30px'}}>
         <div style={{
           fontWeight: 'bold',
-          fontSize: '250%'
+          fontSize: '250%',
+          marginBottom: '20px'
         }}>
           Sign Up
         </div>
@@ -206,8 +207,8 @@ export class LoginPage extends Component {
             <div style={{
               fontWeight: 'bold',
               fontSize: '200%',
-              paddingLeft: '100px',
-              paddingRight: '180px'}}>
+              paddingLeft: '50px',
+              paddingRight: '50px'}}>
               Connect with friends and the
               world around you on {this.props.fns.getAccount().siteName}.
             </div>
