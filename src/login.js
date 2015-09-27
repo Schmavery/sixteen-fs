@@ -58,14 +58,15 @@ export class LoginPage extends Component {
         placeholder={niceName}
         style={{
           fontSize:'120%',
-          marginTop:'10px',
-          display:'block',
-          width:'100%',
+          marginTop:'5px',
+          marginBottom:'5px',
+          display:'inline-block',
           height:'40px',
           paddingLeft:'10px',
-          outline:'0px',
+          outline:'0',
           border:'1px solid lightgrey',
-          borderRadius:'5px'
+          borderRadius:'5px',
+          width: style
         }}
         onChange={e =>
           this.setState({
@@ -100,8 +101,8 @@ export class LoginPage extends Component {
           {this.props.fns.getAccount().siteName}
         </div>
         <div style={{
-          marginLeft: 'auto',
-          marginRight: '50px',
+          margin: 'auto',
+          height: '30px',
           display: Util.flex}}>
           <input
             type="text"
@@ -123,11 +124,11 @@ export class LoginPage extends Component {
             onChange={(e) => this.setState({'login-password':e.target.value})}/>
           <div
             style={{
-              padding: '5px',
+              padding: '5px 10px',
               backgroundColor: '#4c69ba',
               border: '1px solid #354c8c',
               marginLeft: 'auto',
-              marginRight: '50px',
+              height: '20px',
               cursor: 'pointer'
             }}
             onClick={this.validateLogin}>
@@ -140,47 +141,50 @@ export class LoginPage extends Component {
     var signupForm = (
       <div style={{
         display: Util.flex,
-        flexDirection: Util.flexDirection('column'),
-        marginRight: '50px',}}>
+        flexDirection: Util.flexDirection('column'), padding:'30px'}}>
         <div style={{
           fontWeight: 'bold',
           fontSize: '250%',
-          marginBottom: '20px'}}>
+          // marginBottom: '20px'
+        }}>
           Sign Up
         </div>
         <span style={{color:'red'}}>
           {this.state.error}
         </span>
         <div style={{display:Util.flex}}>
-          {this.createInput('first', 'First name')}
-          &nbsp;&nbsp;
-          {this.createInput('last', 'Last name')}
+          {this.createInput('first', 'First name', '50%')}
+          {this.createInput('last', 'Last name', '50%')}
         </div>
         {this.createInput('email', 'Email')}
         {this.createInput('email2', 'Re-enter email')}
         {this.createInput('password', 'New password')}
         <div style={{
-          marginRight: '50px',
-          marginLeft: '5px',
+          // marginRight: '50px',
+          // marginLeft: '5px',
           marginTop: '20px',
-          fontSize: '70%'}}>
+          // fontSize: '70%'
+        }}>
         By clicking Sign Up, you agree to our Terms and that you have read our Data Policy, including our Cookie Use.
         </div>
         <Hover
           style={{
-            border: '1px solid #2c5115',
-            marginLeft: '5px',
-            marginTop: '20px',
+            border: '1px solid',
+            marginTop: '10px',
             borderRadius: '5px',
-            display: Util.flex,
+            color: '#ffffff',
+            textAlign: 'center',
             justifyContent: 'center',
             alignItems: 'center',
             width: '200px',
-            height: '35px',
-            cursor: 'pointer'
+            padding: '5px',
+            cursor: 'pointer',
+            background: 'linear-gradient(#67ae55, #578843)',
+            boxShadow: 'inset 0 1px 1px #a4e388',
+            borderColor: '#3b6e22 #3b6e22 #2c5115'
           }}
           hover={{backgroundColor: '#6bb933'}}
-          noHover={{backgroundColor: '#519f18'}}
+          noHover={{backgroundColor: '#69a74e'}}
           onClick={this.validateSignup}>
           Sign Up
         </Hover>
