@@ -84,8 +84,6 @@ export class LoginPage extends Component {
         flexDirection: Util.flexDirection('row'),
         backgroundColor: '#3b5998',
         color: '#f7f7f7',
-        // justifyContent: 'space-between',
-        // order: '-1',
         padding: '10',
         zIndex: 99,
         alignItems: 'center'}}>
@@ -101,7 +99,7 @@ export class LoginPage extends Component {
           {this.props.fns.getAccount().siteName}
         </div>
         <div style={{
-          margin: 'auto 0',
+          margin: '0 50px 0 auto',
           height: '30px',
           display: Util.flex}}>
           <input
@@ -171,7 +169,7 @@ export class LoginPage extends Component {
             borderRadius: '5px',
             color: '#ffffff',
             textAlign: 'center',
-            justifyContent: 'center',
+            justifyContent: Util.justifyContent('center'),
             alignItems: 'center',
             width: '200px',
             padding: '5px',
@@ -201,19 +199,19 @@ export class LoginPage extends Component {
         <div style={{
           display: Util.flex,
           flexDirection: Util.flexDirection('row'),
+          justifyContent:Util.justifyContent('center'),
           top: '50px',
           position: 'relative'}}>
-          <div style={{flex:'0 0 60%'}}>
+          <div style={{flex:'0 0 30em'}}>
             <div style={{
               fontWeight: 'bold',
               fontSize: '200%',
-              paddingLeft: '50px',
               paddingRight: '50px'}}>
               Connect with friends and the
               world around you on {this.props.fns.getAccount().siteName}.
             </div>
           </div>
-          <div style={{order: 2, flex:'0 0 40%'}}>
+          <div style={{order: 2, flex:'0 0 30em'}}>
             {signupForm}
           </div>
         </div>

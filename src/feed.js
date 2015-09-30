@@ -29,6 +29,7 @@ export class NewsFeed extends Component {
         <div style={{
           display: Util.flex,
           flexDirection: Util.flexDirection('row'),
+          justifyContent:Util.justifyContent('center'),
           flex: 1,
           top: '60px',
           position: 'relative'}}>
