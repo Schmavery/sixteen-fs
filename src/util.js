@@ -114,5 +114,6 @@ export class NameTag extends Component {
 
 var flex = 'flex;display:-webkit-flex;display:-ms-flexbox';
 var flexDirection = (d) => d+';-webkit-flex-direction:'+d;
+var alignItems = (d) => d+';-webkit-align-items:'+d;
 var justifyContent = (d) => d+';-webkit-justify-content:'+d;
-export default {flex, flexDirection, justifyContent};
+export default {flex, flexDirection, justifyContent, alignItems};

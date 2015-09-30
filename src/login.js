@@ -86,7 +86,7 @@ export class LoginPage extends Component {
         color: '#f7f7f7',
         padding: '10',
         zIndex: 99,
-        alignItems: 'center'}}>
+        alignItems: Util.alignItems('center')}}>
         <div
           style={{
             fontSize: '350%',
@@ -170,7 +170,7 @@ export class LoginPage extends Component {
             color: '#ffffff',
             textAlign: 'center',
             justifyContent: Util.justifyContent('center'),
-            alignItems: 'center',
+            alignItems: Util.alignItems('center'),
             width: '200px',
             padding: '5px',
             cursor: 'pointer',

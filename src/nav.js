@@ -10,7 +10,7 @@ class NavListTopItem extends Component {
         style={{
           display: Util.flex,
           flexDirection: Util.flexDirection('row'),
-          alignItems: 'center',
+          alignItems: Util.alignItems('center'),
           cursor: 'pointer'
         }}>
         <Image style={{
@@ -44,7 +44,7 @@ class NavListItem extends Component {
         style={{
           display:Util.flex,
           flexDirection:Util.flexDirection('row'),
-          alignItems:'center',
+          alignItems: Util.alignItems('center'),
           cursor:'pointer'}}>
         <Image style={{
           width:'20px',

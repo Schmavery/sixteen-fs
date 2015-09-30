@@ -51,7 +51,7 @@ export class Post extends Component {
         <span>
           <div style={{
             display: Util.flex,
-            alignItems: 'center'}}>
+            alignItems: Util.alignItems('center')}}>
             <NameTag name={this.props.liked}/>
             <div>&nbsp;liked this.</div>
           </div>
@@ -115,7 +115,7 @@ export class NewStatus extends Component {
       <ContentWrapper>
         <span style={{
           display: Util.flex,
-          alignItems: 'center',
+          alignItems: Util.alignItems('center'),
           fontSize: '90%'}}>
           <Image style={{
             width: '20px',

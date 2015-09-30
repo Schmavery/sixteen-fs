@@ -40,7 +40,7 @@ export class HeaderBar extends Component {
         top: 0,
         left: 0,
         zIndex: 99,
-        alignItems: 'center'}}>
+        alignItems: Util.alignItems('center')}}>
         {logo}
         <input
           type='text'
@@ -69,7 +69,7 @@ class HeaderMenu extends Component {
         marginRight: '30px',
         display: Util.flex,
         flexDirection: Util.flexDirection('row'),
-        alignItems: 'center'}}>
+        alignItems: Util.alignItems('center')}}>
         <Hover
           hover={{
             backgroundColor: '#355089',
@@ -79,7 +79,7 @@ class HeaderMenu extends Component {
           style={{
             display: Util.flex,
             flexDirection: Util.flexDirection('row'),
-            alignItems: 'center'}}>
+            alignItems: Util.alignItems('center')}}>
           <Image style={{
             width:'23px',
             height:'23px',
