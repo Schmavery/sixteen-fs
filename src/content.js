@@ -4,6 +4,8 @@ var f16 = 'ffffffffffffffff';
 
 class PersonBrief extends Component {
   render () {
+    var post = this.props.post;
+    var account = this.props.fns.getAccount(post.author);
     return (
       <div style={{
         display: Util.flex,
@@ -16,13 +18,13 @@ class PersonBrief extends Component {
           display: Util.flex,
           flexDirection: Util.flexDirection('column'),
           marginLeft: '10px'}}>
-          <NameTag name="FirstName LastName"/>
+          <NameTag user={this.props.fns.getAccount(post.author)}/>
           <Hover
             hover={{textDecoration: 'underline'}}
             style={{
               color: '#9197a3',
               marginTop: '2px'}}>
-            5 hrs · Montreal, Quebec
+            {Util.formatTime(post.time)}
           </Hover>
         </div>
       </div>
@@ -57,15 +59,8 @@ export class Post extends Component {
           </div>
           <Rule />
         </span> : null}
-      <PersonBrief />
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore magna
-        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-        aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia
-        deserunt mollit anim id est laborum.
+      <PersonBrief fns={this.props.fns} post={this.props.post}/>
+        {this.props.post.content}
       <FeedBackSection />
       </ContentWrapper>);
   }
@@ -110,6 +105,25 @@ export class AdFooter extends Component {
 }
 
 export class NewStatus extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {newStatus: ''};
+    this.handlePost = this.handlePost.bind(this);
+  }
+
+  handlePost () {
+    if (this.state.newStatus.trim()){
+      var post = {
+        author: this.props.fns.getAccount().id,
+        id: Util.genID('post'),
+        time: Date.now(),
+        content: this.state.newStatus
+      }
+      this.props.fns.addElement('posts', post);
+      this.setState({newStatus: ''});
+    }
+  }
+
   render () {
     return (
       <ContentWrapper>
@@ -170,22 +184,27 @@ export class NewStatus extends Component {
               outline: '0px',
               resize: 'none'
             }}
-            placeholder="Whats on your mind?"
-            onChange={(e) => this.setState({'new-status':e.target.value})}/>
+            placeholder="What's on your mind?"
+            value={this.state.newStatus}
+            onChange={e => this.setState({newStatus:e.target.value})}
+            onKeyPress={
+              e => (e.which === 13 && !e.shiftKey) ?
+                e.preventDefault() || this.handlePost() :
+                null}/>
         </div>
         <Rule />
         <div style={{
           display: Util.flex,
           flexDirection: Util.flexDirection('row')}}>
           <div style={{
+            cursor: 'pointer',
             marginLeft:'auto',
-            padding:'5px',
-            paddingLeft:'20px',
-            paddingRight:'20px',
+            padding:'5px 20px',
             backgroundColor:'#3b5998',
             color:'#fff',
             fontWeight:'bold',
-            borderRadius:'2px'}}>
+            borderRadius:'2px'}}
+            onClick={e => this.handlePost()}>
             Post
           </div>
         </div>

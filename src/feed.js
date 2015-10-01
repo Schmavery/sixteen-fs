@@ -20,6 +20,7 @@ export class NewsFeed extends Component {
       <div style={{
         display: Util.flex,
         flexDirection: Util.flexDirection('column'),
+        minHeight: '100vh',
         backgroundColor: '#e9eaed',
         overflow: 'hidden',
         width: '100%',
@@ -34,14 +35,12 @@ export class NewsFeed extends Component {
           top: '60px',
           position: 'relative'}}>
           <div style={{flex: '0 0 35em'}}>
-            <NewStatus />
-            <Post liked="Bob Joe"/>
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
+            <NewStatus fns={this.props.fns} />
+            {
+              this.props.fns.getPosts().map((v) =>
+                <Post post={v} fns={this.props.fns} />
+              )
+            }
           </div>
           <div style={{
             flex: '0 1 5em',
@@ -60,6 +59,8 @@ export class NewsFeed extends Component {
             flex: '0 1 10em',
             order: 2}}>
           </div>
+        </div>
+        <div style={{height:'150px'}}>
         </div>
       </div>
     );

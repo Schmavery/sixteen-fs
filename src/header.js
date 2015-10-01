@@ -21,7 +21,7 @@ export class HeaderBar extends Component {
           top: '10px',
           marginTop: '-12px',
           fontSize: '220%'}}>
-          {this.props.fns.getAccount().siteName}
+          {this.props.fns.getSiteName()}
         </div>
       </div>
     );
@@ -44,7 +44,7 @@ export class HeaderBar extends Component {
         {logo}
         <input
           type='text'
-          placeholder={'Search '+this.props.fns.getAccount().siteName}
+          placeholder={'Search '+this.props.fns.getSiteName()}
           style={{
             height:'25px',
             width:'400px',
@@ -89,7 +89,8 @@ class HeaderMenu extends Component {
           <div style={{
             marginRight:'10px',
             padding:'5px',
-            paddingRight:'0px'}}>
+            paddingRight:'0px'}}
+            onClick = {this.props.fns.printAccounts}>
             {this.props.fns.getAccount().first}
           </div>
         </Hover>

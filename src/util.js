@@ -97,6 +97,8 @@ export class Image extends Component {
 
 export class NameTag extends Component {
   render() {
+    var name = this.props.name ||
+      (this.props.user.first + " " + this.props.user.last);
     return (
       <Hover
         hover={{
@@ -106,14 +108,34 @@ export class NameTag extends Component {
           color: '#355089',
           fontWeight: 'bold'
         }}>
-        {this.props.name}
+        {name}
       </Hover>
     );
   }
 }
 
+var formatTime = (t) => {
+  var curTime = Date.now();
+  return (new Date(parseInt(t))).toString();
+}
+
+var hash = (s) => '-hash-'+s;
+
+var genID = (s) => s.split("").reduce(
+  function (acc, v, i){return acc + v.charCodeAt(0)*Math.pow(10,i)}, 0).toString() +
+  Math.floor(Math.random()*Number.MAX_SAFE_INTEGER).toString();
+
 var flex = 'flex;display:-webkit-flex;display:-ms-flexbox';
 var flexDirection = (d) => d+';-webkit-flex-direction:'+d;
 var alignItems = (d) => d+';-webkit-align-items:'+d;
 var justifyContent = (d) => d+';-webkit-justify-content:'+d;
-export default {flex, flexDirection, justifyContent, alignItems};
+
+export default {
+  flex,
+  flexDirection,
+  justifyContent,
+  alignItems,
+  genID,
+  hash,
+  formatTime
+};

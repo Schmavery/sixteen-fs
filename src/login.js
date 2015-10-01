@@ -16,7 +16,6 @@ export class LoginPage extends Component {
       password:''
     };
     this.validateSignup = this.validateSignup.bind(this);
-    this.validateLogin = this.validateLogin.bind(this);
     this.createInput = this.createInput.bind(this);
   }
 
@@ -31,24 +30,15 @@ export class LoginPage extends Component {
       return this.setState({error:'Emails do not match.'});
     }
 
-    this.props.fns.setAccount({
+    var id = Util.genID('user');
+    this.props.fns.addElement('accounts',
+    {
       first: this.state.first,
       last: this.state.last,
       email: this.state.email,
-      password: this.state.password
-    });
-    this.props.fns.changePage('feed');
-  }
-
-  validateLogin(){
-    if (!(this.state['login-email'] && this.state['login-password'])){
-      return;
-    } else if (this.state['login-password'] !== this.props.fns.getAccount().password){
-      return;
-    } else if (this.state['login-email'] !== this.props.fns.getAccount().email){
-      return;
-    }
-    this.props.fns.changePage('feed');
+      password: Util.hash(this.state.password),
+      id: id
+    }, () => this.props.fns.login(this.state.email, this.state.password));
   }
 
   createInput(formName, niceName, style) {
@@ -96,7 +86,7 @@ export class LoginPage extends Component {
             marginLeft: '60px'
           }}
           onClick={this.props.fns.changePage.bind(null,'feed')}>
-          {this.props.fns.getAccount().siteName}
+          {this.props.fns.getSiteName()}
         </div>
         <div style={{
           margin: '0 50px 0 auto',
@@ -129,7 +119,9 @@ export class LoginPage extends Component {
               height: '20px',
               cursor: 'pointer'
             }}
-            onClick={this.validateLogin}>
+            onClick={this.props.fns.login.bind(null,
+              this.state['login-email'],
+              this.state['login-password'])}>
             Log In
           </div>
         </div>
@@ -208,7 +200,7 @@ export class LoginPage extends Component {
               fontSize: '200%',
               paddingRight: '50px'}}>
               Connect with friends and the
-              world around you on {this.props.fns.getAccount().siteName}.
+              world around you on {this.props.fns.getSiteName()}.
             </div>
           </div>
           <div style={{order: 2, flex:'0 0 30em'}}>
