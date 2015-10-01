@@ -18,7 +18,7 @@ class PersonBrief extends Component {
           display: Util.flex,
           flexDirection: Util.flexDirection('column'),
           marginLeft: '10px'}}>
-          <NameTag user={this.props.fns.getAccount(post.author)}/>
+          <NameTag user={this.props.fns.getAccount(post.author)} fns={this.props.fns}/>
           <Hover
             hover={{textDecoration: 'underline'}}
             style={{
@@ -54,7 +54,7 @@ export class Post extends Component {
           <div style={{
             display: Util.flex,
             alignItems: Util.alignItems('center')}}>
-            <NameTag name={this.props.liked}/>
+            <NameTag name={this.props.liked} fns={this.props.fns}/>
             <div>&nbsp;liked this.</div>
           </div>
           <Rule />

@@ -3,7 +3,6 @@ import Util, {Hover, Rule} from './util';
 
 import {HeaderBar} from './header';
 import {Post, Ad, AdFooter, NewStatus} from './content';
-import {NavBar} from './nav';
 
 export class LoginPage extends Component {
   constructor(props) {

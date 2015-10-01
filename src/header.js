@@ -97,14 +97,14 @@ class HeaderMenu extends Component {
         <VertRule color="#355089" />
         <Hover hover={{
           backgroundColor: '#355089',
-          borderRadius: '3px',
-          cursor: 'pointer'}}>
-          <div style={{
-            marginRight: '10px',
-            padding: '5px',
-            paddingLeft: '10px'}}>
+          borderRadius: '3px'}}
+          style ={{
+          marginRight: '10px',
+          padding: '5px',
+          paddingLeft: '10px',
+          cursor: 'pointer'}}
+          onClick={this.props.fns.changePage.bind(null, 'feed')}>
             Home
-          </div>
         </Hover>
         <VertRule color="#355089" />
         <Hover hover={{

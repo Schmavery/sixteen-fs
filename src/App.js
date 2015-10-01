@@ -1,13 +1,16 @@
 import React, { Component } from 'react/addons';
 import Util, {Hover, Rule} from './util';
-import {NewsFeed} from './feed'
-import {LoginPage} from './login'
+import {NewsFeed, MainWrapper} from './feed';
+import {LoginPage} from './login';
+import {Profile} from './profile';
+import {HeaderBar} from './header';
 
 export class App extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      page: 'login',
+      page: 'feed',
+      pageInfo: null,
       siteName: 'ffffffffffffffff',
       userID: '1',
       posts: [{id:'1', author:'1', time: Date.now().toString(), content:'PSADP S A L DSA P L DA SLD'}],
@@ -18,7 +21,7 @@ export class App extends Component {
       comments: []
     };
     this.helper = {
-      changePage: (page) => this.setState({page:page}),
+      changePage: (page, info) => this.setState({page:page, pageInfo:info}),
       setAccount: (account) => {
         var newAcc = {};
         Object.keys(account).forEach(k => newAcc[k] = {$set:account[k]});
@@ -56,7 +59,17 @@ export class App extends Component {
       case 'login':
         return <LoginPage fns={this.helper} />;
       case 'feed':
-        return <NewsFeed fns={this.helper} />;
+        return (
+          <MainWrapper fns={this.helper}>
+            <NewsFeed fns={this.helper} />;
+          </MainWrapper>
+        );
+      case 'profile':
+        return (
+          <MainWrapper fns={this.helper}>
+            <Profile info={this.state.pageInfo} fns={this.helper} />
+          </MainWrapper>
+        )
     }
   }
 }
