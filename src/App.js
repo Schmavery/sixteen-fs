@@ -8,8 +8,9 @@ import {HeaderBar} from './header';
 export class App extends Component {
   constructor (props) {
     super(props);
+    var page = window.location.href.split('/').pop() || 'feed';
     this.state = {
-      page: 'feed',
+      page: page,
       pageInfo: null,
       siteName: 'ffffffffffffffff',
       userID: '1',
@@ -20,8 +21,19 @@ export class App extends Component {
         last: 'Zuckerberg'}],
       comments: []
     };
+    window.history.replaceState({page:page},page,page);
+    window.addEventListener("popstate", (e) => {
+      if (e.state && e.state.page){
+        this.helper.changePage(e.state.page);
+      }
+    });
+
     this.helper = {
-      changePage: (page, info) => this.setState({page:page, pageInfo:info}),
+      changePage: (page, info) => {
+        if (page != this.state.page)
+          window.history.pushState({page:page},this.state.siteName+" "+page,page);
+        this.setState({page:page, pageInfo:info})
+      },
       setAccount: (account) => {
         var newAcc = {};
         Object.keys(account).forEach(k => newAcc[k] = {$set:account[k]});
@@ -69,7 +81,13 @@ export class App extends Component {
           <MainWrapper fns={this.helper}>
             <Profile info={this.state.pageInfo} fns={this.helper} />
           </MainWrapper>
-        )
+        );
+      case 'search':
+        return (
+          <MainWrapper fns={this.helper}>
+            <Search info={this.state.pageInfo} fns={this.helper} />
+          </MainWrapper>
+        );
     }
   }
 }
