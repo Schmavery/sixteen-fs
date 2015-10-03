@@ -61,6 +61,7 @@ export class HeaderBar extends Component {
 
 class HeaderMenu extends Component {
   render() {
+    var account = this.props.fns.getAccount();
     return (
       <div style={{
         fontColor: '#fff',
@@ -90,8 +91,8 @@ class HeaderMenu extends Component {
             marginRight:'10px',
             padding:'5px',
             paddingRight:'0px'}}
-            onClick = {this.props.fns.printAccounts}>
-            {this.props.fns.getAccount().first}
+            onClick = {this.props.fns.changePage.bind(null, 'profile', account)}>
+            {account.first}
           </div>
         </Hover>
         <VertRule color="#355089" />
@@ -103,7 +104,7 @@ class HeaderMenu extends Component {
           padding: '5px',
           paddingLeft: '10px',
           cursor: 'pointer'}}
-          onClick={this.props.fns.changePage.bind(null, 'feed')}>
+          onClick={this.props.fns.changePage.bind(null, 'feed',{})}>
             Home
         </Hover>
         <VertRule color="#355089" />
@@ -117,7 +118,7 @@ class HeaderMenu extends Component {
               padding:'5px',
               paddingLeft:'10px'
             }}
-            onClick={this.props.fns.changePage.bind(null,'login')}>
+            onClick={this.props.fns.changePage.bind(null,'login',{})}>
             Logout
           </div>
         </Hover>

@@ -17,6 +17,7 @@ class CoverSection {
 
 export class Profile {
   render () {
+    var user = this.props.user || this.props.fns.getAccount();
     return (
       <div style={{
         display: Util.flex,
@@ -31,7 +32,7 @@ export class Profile {
           top: '60px',
           position: 'relative'}}>
           <div style={{flex: '0 0 35em'}}>
-            <NameTag user={this.props.info} fns={this.props.fns}/>
+            <NameTag user={user} fns={this.props.fns}/>
           </div>
 
         </div>

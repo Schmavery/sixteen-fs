@@ -8,7 +8,8 @@ import {HeaderBar} from './header';
 export class App extends Component {
   constructor (props) {
     super(props);
-    var page = window.location.href.split('/').pop() || 'feed';
+    var page = window.location.href.split('#')[1] || 'feed';
+    console.log(page);
     this.state = {
       page: page,
       pageInfo: null,
@@ -21,17 +22,20 @@ export class App extends Component {
         last: 'Zuckerberg'}],
       comments: []
     };
-    window.history.replaceState({page:page},page,page);
+    console.log("COMNASONSTPISD");
     window.addEventListener("popstate", (e) => {
       if (e.state && e.state.page){
-        this.helper.changePage(e.state.page);
+        console.log(e.state.page, this.state.page);
+        this.setState({page:e.state.page, pageInfo:e.state.pageInfo})
+        //this.helper.changePage(e.state.page, e.state.pageInfo);
       }
     });
+    window.history.replaceState({page:page, pageInfo:null},page,'#'+page);
 
     this.helper = {
       changePage: (page, info) => {
-        if (page != this.state.page)
-          window.history.pushState({page:page},this.state.siteName+" "+page,page);
+        console.log('changing page to '+page);
+        window.history.pushState({page:page, pageInfo:info},this.state.siteName+" "+page,'#'+page);
         this.setState({page:page, pageInfo:info})
       },
       setAccount: (account) => {
@@ -48,7 +52,9 @@ export class App extends Component {
       },
       getAccount: (id) => this.state.accounts.filter((a) => a.id === (id || this.state.userID))[0],
       getSiteName: () => this.state.siteName,
-      getPosts: () => this.state.posts,
+      getPosts: () => this.state.posts
+        .filter((e) => this.helper.friends(this.state.userID, e.author))
+        .sort((e1, e2) => e2.time - e1.time),
       login: (e, p) => {
         if (!(e && p)){
           return false;
@@ -62,11 +68,12 @@ export class App extends Component {
         }
         return false;
       },
-      printAccounts: () => console.log(this.state.userID, this.state.accounts, this.state.posts)
+      friends: (id1, id2) => true
     }
     Object.keys(this.helper).forEach(k => this.helper[k].bind(this));
   }
   render() {
+    console.log("RENDERPAGE:"+this.state.page);
     switch (this.state.page){
       case 'login':
         return <LoginPage fns={this.helper} />;
@@ -79,7 +86,7 @@ export class App extends Component {
       case 'profile':
         return (
           <MainWrapper fns={this.helper}>
-            <Profile info={this.state.pageInfo} fns={this.helper} />
+            <Profile user={this.state.pageInfo} fns={this.helper} />
           </MainWrapper>
         );
       case 'search':

@@ -84,7 +84,7 @@ export class LoginPage extends Component {
             marginTop: '20px',
             marginLeft: '60px'
           }}
-          onClick={this.props.fns.changePage.bind(null,'feed')}>
+          onClick={this.props.fns.changePage.bind(null,'feed',{})}>
           {this.props.fns.getSiteName()}
         </div>
         <div style={{
