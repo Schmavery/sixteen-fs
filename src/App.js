@@ -9,20 +9,31 @@ import {Search} from './search';
 export class App extends Component {
   constructor (props) {
     super(props);
-    var page = window.location.href.split('#')[1] || 'feed';
+    var url = window.location.href.split('#')[1], page, info;
+    console.log('url',url);
+    if (!url) {
+      page ='feed';
+      info = null;
+      console.log('!url',page)
+    } else {
+      var d = Util.uriDecodeObj(url);
+      page = d.page;
+      info = d.info;
+      console.log("GETTING INFO FROM URL",d);
+    }
     console.log(page);
     this.state = {
       page: page,
-      pageInfo: null,
+      pageInfo: info,
       siteName: 'ffffffffffffffff',
       userID: '1',
-      posts: [{id:'1', author:'1', time: Date.now().toString(), content:'Welcome to the site!'}],
+      posts: [{id:'1', author:'1', time: Date.now().toString(), content:'Welcome to the site!', likes:[]}],
       accounts: [{
         id: '1',
         first: 'Mark',
         last: 'Zuckerberg',
         email: 'mark@gmail.com'}],
-      comments: []
+      comments: [],
     };
 
     window.addEventListener("popstate", (e) => {
@@ -31,12 +42,12 @@ export class App extends Component {
         this.setState({page:e.state.page, pageInfo:e.state.pageInfo})
       }
     });
-    window.history.replaceState({page:page, pageInfo:null},page,'#'+page);
+    window.history.replaceState({page:page, pageInfo:info},page,'#'+page+Util.uriEncodeObj(info));
 
     this.helper = {
       changePage: (page, info) => {
         console.log('changing page to '+page);
-        window.history.pushState({page:page, pageInfo:info},this.state.siteName+" "+page,'#'+page);
+        window.history.pushState({page:page, pageInfo:info},this.state.siteName+" "+page,'#'+page+Util.uriEncodeObj(info));
         this.setState({page:page, pageInfo:info})
       },
       setAccount: (account) => {
@@ -48,7 +59,10 @@ export class App extends Component {
         this.setState(newState);
       },
       addElement: (type, el, cb) => {
-        var newState = React.addons.update(this.state, {[type]:{$push: [el]}});
+        this.helper.deepUpdate({[type]:{$push: [el]}}, cb)
+      },
+      deepUpdate: (el, cb) => {
+        var newState = React.addons.update(this.state, el);
         this.setState(newState, cb);
       },
       getAccount: (id) => this.state.accounts.filter((a) => a.id === (id || this.state.userID))[0],
@@ -96,6 +110,8 @@ export class App extends Component {
             <Search info={this.state.pageInfo || {}} fns={this.helper} />
           </MainWrapper>
         );
+      default:
+        console.log('ERROR in App.render:',this.state.page, this.state.info);
     }
   }
 }

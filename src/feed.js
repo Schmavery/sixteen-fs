@@ -51,7 +51,7 @@ export class NewsFeed extends Component {
           <NewStatus fns={this.props.fns} />
           {
             this.props.fns.getPosts().map((v) =>
-              <Post post={v} fns={this.props.fns} />
+              <Post key={'key'+v.id} post={v} fns={this.props.fns} />
             )
           }
         </div>

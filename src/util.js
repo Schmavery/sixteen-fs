@@ -264,6 +264,29 @@ var flexDirection = (d) => d+';-webkit-flex-direction:'+d;
 var alignItems = (d) => d+';-webkit-align-items:'+d;
 var justifyContent = (d) => d+';-webkit-justify-content:'+d;
 
+function uriEncodeObj(obj){
+  console.log("ENCODE",obj)
+  var s= Object.keys(obj || {}).reduce(
+    (acc, k) => acc+k+'='+obj[k]+'&','?');
+  console.log(s, s.slice(0,-1));
+  return s.slice(0,-1);
+}
+
+function uriDecodeObj(str){
+  var obj = null;
+  var qArr = str.split('?');
+  console.log(qArr, str);
+  if (qArr[1]){
+    obj = {};
+    var arr = qArr[1].split('&');
+    arr.forEach(el => {
+      var attr = el.split('=');
+      obj[attr[0]] = attr[1];
+    })
+  }
+  return {page:qArr[0], info:obj};
+}
+
 export default {
   flex,
   flexDirection,
@@ -275,4 +298,6 @@ export default {
   callAjax,
   timeAgo,
   OpenInNewTab,
+  uriDecodeObj,
+  uriEncodeObj
 };

@@ -33,13 +33,18 @@ class PersonBrief extends Component {
 }
 
 class FeedBackSection extends Component {
+  handleLike(){
+    //this.props.fns.deepUpdate({posts:{likes$push: [el]}})
+  }
+
   render () {
+    var post = this.props.post;
     return  (
       <div style={{
         color: '#9197a3',
         fontWeight: 'bold'}}>
         <Rule />
-        Like  -  Comment  -  Share
+        {post.likes.length} Like{post.likes.length!==1?'s':''} -  Comment  -  Share
       </div>
     );
   }
@@ -61,7 +66,7 @@ export class Post extends Component {
         </span> : null}
       <PersonBrief fns={this.props.fns} post={this.props.post}/>
         {this.props.post.content}
-      <FeedBackSection />
+      <FeedBackSection post={this.props.post} />
       </ContentWrapper>);
   }
 }
@@ -95,7 +100,8 @@ export class NewStatus extends Component {
         author: this.props.fns.getAccount().id,
         id: Util.genID('post'),
         time: Date.now(),
-        content: this.state.newStatus
+        content: this.state.newStatus,
+        likes: []
       }
       this.props.fns.addElement('posts', post);
       this.setState({newStatus: ''});
