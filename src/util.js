@@ -71,22 +71,6 @@ export class VertRule extends Component {
   }
 }
 
-export class ContentWrapper extends Component {
-  render() {
-    return (
-      <div style={{
-        backgroundColor: '#fff',
-        padding: '10px',
-        margin:  '10px',
-        marginLeft: '10px',
-        borderRadius: '3px',
-        border: '1px solid #dfe3ee',}}>
-        {this.props.children}
-      </div>
-    );
-  }
-}
-
 export class Image extends Component {
   render() {
     return (
@@ -103,11 +87,13 @@ export class NameTag extends Component {
   }
 
   toggleHoverProfile(on) {
-    if (this.state.timeout) clearTimeout(this.state.timeout);
-    if (on) {
-      this.setState({timeout: setTimeout(() => this.setState({hoverProfile: true}), 500)})
-    } else {
-      this.setState({timeout: setTimeout(() => this.setState({hoverProfile: false}), 100)})
+    if (!this.props.noHover){
+      if (this.state.timeout) clearTimeout(this.state.timeout);
+      if (on) {
+        this.setState({timeout: setTimeout(() => this.setState({hoverProfile: true}), 500)})
+      } else {
+        this.setState({timeout: setTimeout(() => this.setState({hoverProfile: false}), 100)})
+      }
     }
   }
 
@@ -262,6 +248,11 @@ function callAjax(url, callback){
   xmlhttp.send();
 }
 
+function OpenInNewTab(url) {
+  var win = window.open(url, '_blank');
+  win.focus();
+}
+
 var hash = (s) => '-hash-'+s;
 
 var genID = (s) => s.split("").reduce(
@@ -283,4 +274,5 @@ export default {
   formatTime,
   callAjax,
   timeAgo,
+  OpenInNewTab,
 };

@@ -52,7 +52,17 @@ export class HeaderBar extends Component {
         <input
           type='text'
           placeholder={'Search '+this.props.fns.getSiteName()}
-          onChange={(e) => this.setState({'search': e.target.value})}
+          value={this.state.search}
+          onChange={(e) => this.setState({search: e.target.value})}
+          onKeyPress={
+            e => {
+              if (e.which === 13 && !e.shiftKey){
+                e.preventDefault();
+                this.setState({search:""});
+                this.props.fns.changePage('search', {q:this.state.search});
+              }
+            }
+          }
           style={{
             height:'25px',
             width:'400px',

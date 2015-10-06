@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Util, {Hover, ContentWrapper, Rule, Image, VertRule, NameTag} from './util';
+import Util, {Hover, Rule, Image, VertRule, NameTag} from './util';
 var f16 = 'ffffffffffffffff';
 
 class PersonBrief extends Component {
@@ -66,39 +66,17 @@ export class Post extends Component {
   }
 }
 
-export class Ad extends Component {
-  render () {
-    return (
-      <ContentWrapper>
-        <span style={{
-          fontWeight: 'bold',
-          color: '#9197a3'}}>
-          TRENDING
-        </span>
-
-        <Rule />
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore magna
-        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-        aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia
-        deserunt mollit anim id est laborum.
-      </ContentWrapper>);
-  }
-}
-
-export class AdFooter extends Component {
-  render () {
+export class ContentWrapper extends Component {
+  render() {
     return (
       <div style={{
-        marginLeft: '20px',
-        fontSize: '90%',
-        color: '#9197a3'}}>
-        English (US) · Privacy · Terms · Cookies · Advertising · Ad Choices ·
-        More <br />
-        {f16} © 2015
+        backgroundColor: '#fff',
+        padding: '10px',
+        margin:  '10px',
+        marginLeft: '10px',
+        borderRadius: '3px',
+        border: '1px solid #dfe3ee',}}>
+        {this.props.children}
       </div>
     );
   }

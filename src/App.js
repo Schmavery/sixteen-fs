@@ -20,10 +20,10 @@ export class App extends Component {
       accounts: [{
         id: '1',
         first: 'Mark',
-        last: 'Zuckerberg'}],
+        last: 'Zuckerberg',
+        email: 'mark@gmail.com'}],
       comments: []
     };
-    Util.callAjax('http://content.guardianapis.com/search?api-key=test',(res) => console.log(res));
 
     window.addEventListener("popstate", (e) => {
       if (e.state && e.state.page){
@@ -32,8 +32,6 @@ export class App extends Component {
       }
     });
     window.history.replaceState({page:page, pageInfo:null},page,'#'+page);
-    // Update times every 5 seconds
-    setInterval(() => {this.forceUpdate()}, 5000);
 
     this.helper = {
       changePage: (page, info) => {
@@ -54,6 +52,7 @@ export class App extends Component {
         this.setState(newState, cb);
       },
       getAccount: (id) => this.state.accounts.filter((a) => a.id === (id || this.state.userID))[0],
+      getAccounts: () => this.state.accounts,
       getSiteName: () => this.state.siteName,
       getPosts: () => this.state.posts
         .filter((e) => this.helper.friends(this.state.userID, e.author))
@@ -94,7 +93,7 @@ export class App extends Component {
       case 'search':
         return (
           <MainWrapper fns={this.helper}>
-            <Search info={this.state.pageInfo} fns={this.helper} />
+            <Search info={this.state.pageInfo || {}} fns={this.helper} />
           </MainWrapper>
         );
     }

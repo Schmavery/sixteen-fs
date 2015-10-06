@@ -1,18 +1,9 @@
 import React, { Component } from 'react';
 import Util, {Hover, Rule} from './util';
-import {Post, Ad, AdFooter, NewStatus} from './content';
+import {Post, AdFooter, NewStatus, ContentWrapper} from './content';
 import {NavBar} from './nav';
+import {AdsBar} from './ads';
 import {HeaderBar} from './header';
-
-export class AdsBar extends Component {
-  render() {
-    var text = this.props.text;
-    var arr = Array(this.props.num).join().split(',').map(function(v, i) {
-      return <Ad />
-    });
-    return (<div>{arr}<AdFooter /></div>);
-  }
-}
 
 export class MainWrapper extends Component {
   render() {
@@ -37,6 +28,16 @@ export class MainWrapper extends Component {
 }
 
 export class NewsFeed extends Component {
+  componentDidMount(){
+    // Update times every 5 seconds
+    this.interval = setInterval(() => {this.forceUpdate()}, 5000);
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.interval);
+    this.internal = null;
+  }
+
   render() {
     return (
       <div style={{
@@ -65,7 +66,7 @@ export class NewsFeed extends Component {
           <NavBar fns={this.props.fns}/>
         </div>
         <div style={{flex: '0 0 20em'}}>
-          <AdsBar num={1}/>
+          <AdsBar fns={this.props.fns}/>
         </div>
         <div style={{
           flex: '0 1 10em',
