@@ -7,6 +7,7 @@ class NavListTopItem extends Component {
     return (
       <Hover
         hover={{textDecoration: 'underline'}}
+        onClick={this.props.onClick}
         style={{
           display: Util.flex,
           flexDirection: Util.flexDirection('row'),
@@ -41,6 +42,7 @@ class NavListItem extends Component {
           backgroundColor:'#dcdee3',
           borderRadius:'3px',
         }}
+        onClick={this.props.onClick}
         style={{
           display:Util.flex,
           flexDirection:Util.flexDirection('row'),
@@ -91,10 +93,19 @@ export class NavBar extends Component {
     var text = this.props.text;
     return (
     <span>
-      <NavListTopItem text={this.props.fns.getAccount().first + ' ' + this.props.fns.getAccount().last}/>
-      <NavListTopItem text='Edit Profile'/>
+      <NavListTopItem
+        text={this.props.fns.getAccount().first + ' ' + this.props.fns.getAccount().last}
+        onClick={this.props.fns.changePage.bind(null,'profile',this.props.user)}
+      />
+      <NavListTopItem
+        text='Edit Profile'
+        onClick={this.props.fns.changePage.bind(null,'profile',this.props.user)}
+      />
       <NavTitle text='favourites'/>
-      <NavListItem text='News Feed'/>
+      <NavListItem
+        text='News Feed'
+        onClick={this.props.fns.changePage.bind(null,'feed',this.props.user)}
+      />
       <NavListItem text='Messages'/>
       <NavListItem text='Events'/>
       <NavTitle text='suggested'/>

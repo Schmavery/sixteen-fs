@@ -4,6 +4,7 @@ import {NewsFeed, MainWrapper} from './feed';
 import {LoginPage} from './login';
 import {Profile} from './profile';
 import {HeaderBar} from './header';
+import {Search} from './search';
 
 export class App extends Component {
   constructor (props) {
@@ -15,22 +16,24 @@ export class App extends Component {
       pageInfo: null,
       siteName: 'ffffffffffffffff',
       userID: '1',
-      posts: [{id:'1', author:'1', time: Date.now().toString(), content:'PSADP S A L DSA P L DA SLD'}],
+      posts: [{id:'1', author:'1', time: Date.now().toString(), content:'Welcome to the site!'}],
       accounts: [{
         id: '1',
         first: 'Mark',
         last: 'Zuckerberg'}],
       comments: []
     };
-    console.log("COMNASONSTPISD");
+    Util.callAjax('http://content.guardianapis.com/search?api-key=test',(res) => console.log(res));
+
     window.addEventListener("popstate", (e) => {
       if (e.state && e.state.page){
         console.log(e.state.page, this.state.page);
         this.setState({page:e.state.page, pageInfo:e.state.pageInfo})
-        //this.helper.changePage(e.state.page, e.state.pageInfo);
       }
     });
     window.history.replaceState({page:page, pageInfo:null},page,'#'+page);
+    // Update times every 5 seconds
+    setInterval(() => {this.forceUpdate()}, 5000);
 
     this.helper = {
       changePage: (page, info) => {
@@ -73,7 +76,6 @@ export class App extends Component {
     Object.keys(this.helper).forEach(k => this.helper[k].bind(this));
   }
   render() {
-    console.log("RENDERPAGE:"+this.state.page);
     switch (this.state.page){
       case 'login':
         return <LoginPage fns={this.helper} />;

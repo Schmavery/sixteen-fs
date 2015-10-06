@@ -24,7 +24,7 @@ class PersonBrief extends Component {
             style={{
               color: '#9197a3',
               marginTop: '2px'}}>
-            {Util.formatTime(post.time)}
+            {Util.timeAgo(post.time)}
           </Hover>
         </div>
       </div>

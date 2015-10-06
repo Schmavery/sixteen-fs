@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import Util, {Hover, Image, VertRule} from './util';
 
 export class HeaderBar extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      search: ''
+    }
+  }
+
   render() {
     var logo = (
       <div style={{
@@ -45,6 +52,7 @@ export class HeaderBar extends Component {
         <input
           type='text'
           placeholder={'Search '+this.props.fns.getSiteName()}
+          onChange={(e) => this.setState({'search': e.target.value})}
           style={{
             height:'25px',
             width:'400px',

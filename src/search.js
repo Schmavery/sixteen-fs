@@ -24,12 +24,7 @@ export class Search extends Component {
         top: '60px',
         position: 'relative'}}>
         <div style={{flex: '0 0 35em'}}>
-          <NewStatus fns={this.props.fns} />
-          {
-            this.props.fns.getPosts().map((v) =>
-              <SearchResult fns={this.props.fns} />
-            )
-          }
+          <SearchResult />
         </div>
         <div style={{
           flex: '0 1 5em',
