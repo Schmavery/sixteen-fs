@@ -17,7 +17,7 @@ class CoverSection {
 
 export class Profile {
   render () {
-    var user = this.props.user || this.props.fns.getAccount();
+    var user = this.props.fns.getAccount(this.props.user.id);
     return (
       <div style={{
         display: Util.flex,

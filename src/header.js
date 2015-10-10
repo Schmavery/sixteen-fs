@@ -109,7 +109,7 @@ class HeaderMenu extends Component {
             marginRight:'10px',
             padding:'5px',
             paddingRight:'0px'}}
-            onClick = {this.props.fns.changePage.bind(null, 'profile', account)}>
+            onClick = {this.props.fns.changePage.bind(null, 'profile', {id:account.id})}>
             {account.first}
           </div>
         </Hover>

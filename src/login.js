@@ -40,10 +40,10 @@ export class LoginPage extends Component {
     }, () => this.props.fns.login(this.state.email, this.state.password));
   }
 
-  createInput(formName, niceName, style) {
+  createInput(formName, niceName, style, isPassword) {
     return (
       <input
-        type='text'
+        type={isPassword ? 'password' : 'text'}
         placeholder={niceName}
         style={{
           fontSize:'120%',
@@ -101,7 +101,7 @@ export class LoginPage extends Component {
             }}
             onChange={(e) => this.setState({'login-email': e.target.value})}/>
           <input
-            type="text"
+            type="password"
             placeholder="Password"
             style={{
               height: '25px',
@@ -147,7 +147,7 @@ export class LoginPage extends Component {
         </div>
         {this.createInput('email', 'Email')}
         {this.createInput('email2', 'Re-enter email')}
-        {this.createInput('password', 'New password')}
+        {this.createInput('password', 'New password', null, true)}
         <div style={{
           marginTop: '20px',
         }}>

@@ -5,13 +5,17 @@ import {Post, NewStatus, ContentWrapper} from './content';
 export class AdsBar extends Component {
   constructor(props) {
     super(props);
-    this.state = {res:null};
+    this.state = {};
   }
 
   componentDidMount(){
-    this.setState({res:null});
-    Util.callAjax('http://content.guardianapis.com/search?api-key=test',
+    this.abort = Util.callAjax('http://content.guardianapis.com/search?api-key=test',
       res => this.setState({res:JSON.parse(res).response.results}));
+    console.log(this.abort);
+  }
+
+  componentWillUnmount(){
+    if (this.abort) this.abort();
   }
 
   render() {

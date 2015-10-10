@@ -110,7 +110,7 @@ export class NameTag extends Component {
             ...defStyle,
             cursor: 'pointer',
           }}
-          onClick={this.props.fns.changePage.bind(null,'profile',this.props.user)}
+          onClick={this.props.fns.changePage.bind(null,'profile',{id:this.props.user.id})}
           onMouseEnter={this.toggleHoverProfile.bind(null, true)}
           onMouseLeave={this.toggleHoverProfile.bind(null, false)}>
           {name}
@@ -239,13 +239,15 @@ function timeAgo(time){
 
 function callAjax(url, callback){
   var xmlhttp = new XMLHttpRequest();
-  xmlhttp.onreadystatechange = function(){
-      if (xmlhttp.readyState == XMLHttpRequest.DONE && xmlhttp.status == 200){
-          callback(xmlhttp.responseText);
-      }
+  var abort = false;
+  xmlhttp.onloadend = () =>{
+    if (xmlhttp.status == 200){
+        if (!abort) callback(xmlhttp.responseText);
+    }
   }
   xmlhttp.open("GET", url, true);
   xmlhttp.send();
+  return () => abort = true;
 }
 
 function OpenInNewTab(url) {
@@ -265,17 +267,14 @@ var alignItems = (d) => d+';-webkit-align-items:'+d;
 var justifyContent = (d) => d+';-webkit-justify-content:'+d;
 
 function uriEncodeObj(obj){
-  console.log("ENCODE",obj)
   var s= Object.keys(obj || {}).reduce(
     (acc, k) => acc+k+'='+obj[k]+'&','?');
-  console.log(s, s.slice(0,-1));
   return s.slice(0,-1);
 }
 
 function uriDecodeObj(str){
   var obj = null;
   var qArr = str.split('?');
-  console.log(qArr, str);
   if (qArr[1]){
     obj = {};
     var arr = qArr[1].split('&');

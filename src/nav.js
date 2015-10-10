@@ -91,20 +91,21 @@ class NavTitle extends Component {
 export class NavBar extends Component {
   render() {
     var text = this.props.text;
+    var user = this.props.fns.getAccount();
     return (
     <span>
       <NavListTopItem
-        text={this.props.fns.getAccount().first + ' ' + this.props.fns.getAccount().last}
-        onClick={this.props.fns.changePage.bind(null,'profile',this.props.user)}
+        text={user.first + ' ' + user.last}
+        onClick={this.props.fns.changePage.bind(null,'profile',{id:user.id})}
       />
       <NavListTopItem
         text='Edit Profile'
-        onClick={this.props.fns.changePage.bind(null,'profile',this.props.user)}
+        onClick={this.props.fns.changePage.bind(null,'profile',{id:user.id})}
       />
       <NavTitle text='favourites'/>
       <NavListItem
         text='News Feed'
-        onClick={this.props.fns.changePage.bind(null,'feed',this.props.user)}
+        onClick={this.props.fns.changePage.bind(null,'feed')}
       />
       <NavListItem text='Messages'/>
       <NavListItem text='Events'/>
