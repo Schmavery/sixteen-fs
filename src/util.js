@@ -87,10 +87,12 @@ export class NameTag extends Component {
   }
 
   toggleHoverProfile(on) {
+    console.log('test',React.findDOMNode(this).offsetTop - window.pageYOffset, window.innerHeight)
     if (!this.props.noHover){
       if (this.state.timeout) clearTimeout(this.state.timeout);
       if (on) {
-        this.setState({timeout: setTimeout(() => this.setState({hoverProfile: true}), 500)})
+        this.setState({timeout: setTimeout(() => this.setState({hoverProfile: true,
+          top:(React.findDOMNode(this).offsetTop - window.pageYOffset < (window.innerHeight/2))}), 500)})
       } else {
         this.setState({timeout: setTimeout(() => this.setState({hoverProfile: false}), 100)})
       }
@@ -115,7 +117,7 @@ export class NameTag extends Component {
           onMouseLeave={this.toggleHoverProfile.bind(null, false)}>
           {name}
           {this.state.hoverProfile ?
-            <HoverProfile user={this.props.user} fns={this.props.fns}/> : null}
+            <HoverProfile user={this.props.user} fns={this.props.fns} top={this.state.top}/> : null}
         </Hover>
       </div>
     );
@@ -133,11 +135,12 @@ export class FriendsDropdown extends Component {
 class HoverProfile extends Component {
   render() {
     var fullName = this.props.user.first + " " +this.props.user.last;
+    var height = 12;
     return (
       <div style={{
         position:'absolute',
-        top:'-13em',
-        height:'12em',
+        top: this.props.top ? '2em' : (-1-height)+'em',
+        height: height+'em',
         width:'20em',
         backgroundColor:'#fff',
         border:'solid 1px #dcdee3',
@@ -187,22 +190,25 @@ class HoverProfile extends Component {
           <FriendsDropdown />
         </div>
         <div style={{
-           position:'absolute',
-           bottom:'-20px',
-           left:'20px',
-           width:'0',
-           height:'0',
-           borderColor:'#dcdee3 transparent transparent transparent',
-           borderWidth:'10px',
-           borderStyle:'solid'
-        }}/>
-        <div style={{
           position:'absolute',
-          bottom:'-19px',
+          bottom: this.props.top ? '12em' : '-20px',
+          marginBottom:this.props.top ? '1px' : '0',
           left:'20px',
           width:'0',
           height:'0',
-          borderColor:'#e9eaed transparent transparent transparent',
+          borderColor: this.props.top ? 'transparent transparent #dcdee3 transparent' :
+                                        '#dcdee3 transparent transparent transparent',
+          borderWidth:'10px',
+          borderStyle:'solid'
+        }}/>
+        <div style={{
+          position:'absolute',
+          bottom: this.props.top ? '12em' : '-19px',
+          left:'20px',
+          width:'0',
+          height:'0',
+          borderColor: this.props.top ? 'transparent transparent #e9eaed transparent' :
+                                        '#e9eaed transparent transparent transparent',
           borderWidth:'10px',
           borderStyle:'solid'
         }}/>
