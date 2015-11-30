@@ -82,12 +82,16 @@ class FeedBackSection extends Component {
         color: '#9197a3',
         fontWeight: 'bold'}}>
         <Rule />
-        <Hover hover={{textDecoration: 'underline'}} style={{display:'inline',userSelect:'none',...likeStyle}} onClick={this.handleLike}>
+        <Hover hover={{textDecoration: 'underline'}} style={{display:'inline',userSelect:'none',cursor:'pointer',...likeStyle}}
+          onClick={this.handleLike}>
           👍 Like
         </Hover>
-        <Hover hover={{textDecoration: 'underline'}} style={{display:'inline',marginLeft:30}}
+        <Hover hover={{textDecoration: 'underline'}} style={{display:'inline',marginLeft:30,cursor:'pointer'}}
           onClick={() => React.findDOMNode(this.refs.write).children[1].focus()}>
           💬 Comment
+        </Hover>
+        <Hover hover={{textDecoration: 'underline'}} style={{display:'inline',marginLeft:30,cursor:'pointer'}}>
+          ➦ Share
         </Hover>
          <Rule />
          {likesString ?
@@ -111,12 +115,38 @@ class FeedBackSection extends Component {
 export class Comment extends Component {
   constructor(props){
     super(props);
+    this.state = {liked: this.isAlreadyLiked()};
 
+    this.isAlreadyLiked = this.isAlreadyLiked.bind(this);
+    this.handleLike = this.handleLike.bind(this);
+  }
+
+  isAlreadyLiked(){
+    var likes = this.props.fns.getCommentLikes(this.props.comment);
+    return likes.some(l => this.props.fns.getAccount().id === l.author);
+  }
+
+  handleLike(){
+    var accId = this.props.fns.getAccount().id;
+    if (this.state.liked){
+      var likes = this.props.fns.getCommentLikes().filter(l => l.author !== accId || l.comment !== this.props.comment.id);
+      this.props.fns.deepUpdate({'commentLikes':{$set: likes}});
+    } else {
+      this.props.fns.addElement('commentLikes',
+        {
+          author: accId,
+          comment: this.props.comment.id,
+          time: Date.now().toString()
+        });
+    }
+    this.setState({liked: !this.state.liked});
   }
 
   render () {
     var fns = this.props.fns;
-    var author = this.props.fns.getAccount(this.props.comment.author);
+    var author = fns.getAccount(this.props.comment.author);
+    var likes = fns.getCommentLikes(this.props.comment);
+    var likeText = this.state.liked ? "Unlike" : "Like";
     return (
       <div style={{
         marginTop:10,
@@ -137,12 +167,24 @@ export class Comment extends Component {
               {this.props.comment.content}
             </span>
           </div>
-          <div><span style={{fontWeight:'normal', fontSize:'small'}}>Like · {Util.timeAgo(this.props.comment.time)}</span></div>
+          <div><span style={{fontWeight:'normal', fontSize:'small'}}>
+            <Hover onClick={this.handleLike}
+              hover={{textDecoration:'underline'}}
+              style={{display:'inline',cursor:'pointer',color:'#6182c6'}}>{likeText}</Hover>
+            {
+              likes.length > 0 ? <div style={{color:'#6182c6',display:'inline'}}>
+              &nbsp;·&nbsp;
+              <Hover hover={{textDecoration:'underline'}} style={{cursor:'pointer',display:'inline'}}>👍 {likes.length}</Hover></div> : ""
+            }
+           &nbsp;· {Util.timeAgo(this.props.comment.time)}</span></div>
         </div>
         {
           (fns.getAccount().id == author.id) ?
           <div style={{display:'inline',marginRight:5,cursor:'pointer'}}
-            onClick={() => fns.deepUpdate({'comments':{$set: fns.getComments().filter(c => c !== this.props.comment)}})}>
+            onClick={() => {
+              fns.deepUpdate({'commentLikes':{$set: fns.getCommentLikes().filter(l => l.comment !== this.props.comment.id)}})
+              fns.deepUpdate({'comments':{$set: fns.getComments().filter(c => c !== this.props.comment)}})
+            }}>
             ✕
           </div> : ""
         }

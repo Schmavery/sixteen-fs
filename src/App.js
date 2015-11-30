@@ -39,6 +39,7 @@ export class App extends Component {
         image: Data.zuck
       }],
       comments: [{id:'1', author:'1', post:'1', time: Date.now().toString(), content: "Thanks!"}],
+      commentLikes: [],
       likes: []
     };
 
@@ -94,6 +95,7 @@ export class App extends Component {
       setSiteName: name => this.setState({siteName:name}),
       getLikes: post => post ? this.state.likes.filter(like => (post.id === like.post)) : this.state.likes,
       getComments: post => post ? this.state.comments.filter(comment => (post.id === comment.post)) : this.state.comments,
+      getCommentLikes: c => c ? this.state.commentLikes.filter(l => c.id === l.comment) : this.state.commentLikes,
       getStateDebug: () => this.state
     }
 
