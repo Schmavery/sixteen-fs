@@ -74,10 +74,19 @@ export class VertRule extends Component {
 export class ProfilePic extends Component {
   render() {
     this.props.user.id;
-    //<Image style={{backgroundColor:"green", ...this.props.style}}/>
-    return (
-      <img src={this.props.user.image || ""} style={{...this.props.style, border:"1px solid lightgrey"}}/>
-    );
+    if (this.props.user.image){
+      return (
+        <img src={this.props.user.image || ""} style={{...this.props.style, border:"1px solid lightgrey"}}/>
+      );
+    } else {
+      return (
+        <svg ref="svg" viewBox="0 0 100 100" style={{...this.props.style,border:"1px solid lightgrey"}} preserveAspectRatio="none">
+          <rect id="bg" height="100" width="100" y="0" x="0" fill="#c5cde0"/>
+          <circle id="head" r="20" cy="48" cx="50" fill="#ffffff"/>
+          <circle id="body" r="37.94733" cy="100" cx="50" fill="#ffffff"/>
+        </svg>
+      );
+    }
   }
 }
 
