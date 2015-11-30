@@ -103,7 +103,13 @@ class FeedBackSection extends Component {
 }
 
 export class Comment extends Component {
+  constructor(props){
+    super(props);
+
+  }
+
   render () {
+    var fns = this.props.fns;
     var author = this.props.fns.getAccount(this.props.comment.author);
     return (
       <div style={{
@@ -114,7 +120,7 @@ export class Comment extends Component {
         <ProfilePic user={author} style={{height:30, width:30, display:'inline'}} />
         <div style={{flex:1, marginLeft:5, display: Util.flex, flexDirection: Util.flexDirection('column')}}>
           <div>
-            <NameTag style={{display:'inline'}} user={author} fns={this.props.fns}/>
+            <NameTag style={{display:'inline'}} user={author} fns={fns}/>
             &nbsp;
             <span style={{
               color:"black",
@@ -127,6 +133,13 @@ export class Comment extends Component {
           </div>
           <div><span style={{fontWeight:'normal', fontSize:'small'}}>Like · {Util.timeAgo(this.props.comment.time)}</span></div>
         </div>
+        {
+          (fns.getAccount().id == author.id) ?
+          <div style={{display:'inline',marginRight:5,cursor:'pointer'}}
+            onClick={() => fns.deepUpdate({'comments':{$set: fns.getComments().filter(c => c !== this.props.comment)}})}>
+            x
+          </div> : ""
+        }
       </div>
     );
   }
