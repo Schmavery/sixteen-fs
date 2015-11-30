@@ -1,21 +1,25 @@
 import React, { Component } from 'react';
 import Util, {Hover, Image, ProfilePic} from './util';
+import Data from './data';
 
 class NavListTopItem extends Component {
   render() {
     var img;
+    var style =
+    {
+      width:'20px',
+      height:'20px',
+      margin:'4px'
+    };
     if (this.props.user) {
       img = (<ProfilePic
         user={this.props.user}
-        style={{
-          width:'20px',
-          height:'20px',
-          margin:'4px'}} />);
-    } else {
+        style={style} />);
+    } else if (this.props.svg){
+      img = (this.props.svg(style));
+    }else {
       img = (<Image style={{
-        width:'20px',
-        height:'20px',
-        margin:'4px',
+        ...style,
         backgroundColor:'red'}} />);
     }
 
@@ -111,6 +115,7 @@ export class NavBar extends Component {
         onClick={this.props.fns.changePage.bind(null,'profile',{id:user.id})}
       />
       <NavListTopItem
+        svg={Data.edit}
         text='Edit Profile'
         onClick={this.props.fns.changePage.bind(null,'profile',{id:user.id})}
       />

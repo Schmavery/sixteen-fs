@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Util, {Hover, Rule, Image, VertRule, NameTag, ProfilePic} from './util';
+import Data from './data';
 
 class PersonBrief extends Component {
   render () {
@@ -81,8 +82,13 @@ class FeedBackSection extends Component {
         color: '#9197a3',
         fontWeight: 'bold'}}>
         <Rule />
-        <div style={likeStyle} onClick={this.handleLike}> Like</div>
-         &nbsp;- Comment  -  Share
+        <Hover hover={{textDecoration: 'underline'}} style={{display:'inline',userSelect:'none',...likeStyle}} onClick={this.handleLike}>
+          👍 Like
+        </Hover>
+        <Hover hover={{textDecoration: 'underline'}} style={{display:'inline',marginLeft:30}}
+          onClick={() => React.findDOMNode(this.refs.write).children[1].focus()}>
+          💬 Comment
+        </Hover>
          <Rule />
          {likesString ?
            <Hover
@@ -96,7 +102,7 @@ class FeedBackSection extends Component {
            this.props.fns.getComments(post).map((v) =>
               <Comment key={'key'+v.id} comment={v} fns={this.props.fns} />)
          }
-         <WriteComment post={this.props.post} fns={this.props.fns}/>
+         <WriteComment post={this.props.post} fns={this.props.fns} ref="write"/>
       </div>
     );
   }
@@ -137,7 +143,7 @@ export class Comment extends Component {
           (fns.getAccount().id == author.id) ?
           <div style={{display:'inline',marginRight:5,cursor:'pointer'}}
             onClick={() => fns.deepUpdate({'comments':{$set: fns.getComments().filter(c => c !== this.props.comment)}})}>
-            x
+            ✕
           </div> : ""
         }
       </div>
@@ -266,10 +272,9 @@ export class NewStatus extends Component {
           display: Util.flex,
           alignItems: Util.alignItems('center'),
           fontSize: '90%'}}>
-          <Image style={{
+          {Data.edit({
             width: '20px',
-            height: '20px',
-            backgroundColor: 'red'}} />
+            height: '20px'})}
           <div style={{
             marginLeft: '5px',
             marginRight: '10px',
