@@ -22,16 +22,12 @@ export class Profile extends Component{
   }
 
   handleImage(e){
-    console.log("HELLO");
     var self = this;
     var reader = new FileReader();
     var file = e.target.files[0];
     reader.onload = (upload) => {
       console.log("HI", upload.target.result);
-      //this.props.fns.setAccount({image: upload.target.result});
-    ///this.props.fns.deepUpdate();
       var accts = this.props.fns.getAccounts();
-      console.log("ACCTS",accts);
       accts.forEach(acct => acct === this.props.fns.getAccount() ? acct.image = upload.target.result : null);
       this.props.fns.deepUpdate({'accounts':{$set: accts}});
     }

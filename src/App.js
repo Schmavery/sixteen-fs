@@ -6,6 +6,8 @@ import {Profile} from './profile';
 import {HeaderBar} from './header';
 import {Search} from './search';
 
+import Data from './data';
+
 export class App extends Component {
   constructor (props) {
     super(props);
@@ -34,7 +36,8 @@ export class App extends Component {
         last: 'Zuckerberg',
         email: 'mark@gmail.com',
         about: 'I made facebook.com!',
-        image: ''}],
+        image: Data.zuck
+      }],
       comments: [{id:'1', author:'1', post:'1', time: Date.now().toString(), content: "Thanks!"}],
       likes: []
     };

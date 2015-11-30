@@ -76,7 +76,7 @@ export class ProfilePic extends Component {
     this.props.user.id;
     if (this.props.user.image){
       return (
-        <img src={this.props.user.image || ""} style={{...this.props.style, border:"1px solid lightgrey"}}/>
+        <img src={this.props.user.image || ""} style={{...this.props.style, border:"1px solid lightgrey", objectFit: 'cover'}}/>
       );
     } else {
       return (

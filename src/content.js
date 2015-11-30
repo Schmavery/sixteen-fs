@@ -294,7 +294,7 @@ export class NewStatus extends Component {
           flexDirection: Util.flexDirection('row')}}>
           <ProfilePic user={this.props.fns.getAccount()} style={{
             margin: '5px',
-            width: '45px',
+            width: '40px',
             height: '40px'}} />
           <textarea
             style={{
