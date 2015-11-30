@@ -71,6 +71,16 @@ export class VertRule extends Component {
   }
 }
 
+export class ProfilePic extends Component {
+  render() {
+    this.props.user.id;
+    //<Image style={{backgroundColor:"green", ...this.props.style}}/>
+    return (
+      <img src={this.props.user.image || ""} style={{...this.props.style, border:"1px solid lightgrey"}}/>
+    );
+  }
+}
+
 export class Image extends Component {
   render() {
     return (
@@ -101,9 +111,9 @@ export class NameTag extends Component {
 
   render() {
     var name = (this.props.user.first + " " + this.props.user.last);
-    var defStyle = this.props.style || {color: '#355089',fontWeight: 'bold'};
+    var defStyle =  {color: '#355089',fontWeight: 'bold', ...this.props.style};
     return (
-      <div style={{position:'relative'}}>
+      <div style={{position:'relative', ...defStyle}}>
         <Hover
           hover={{
             textDecoration: 'underline'
@@ -163,12 +173,14 @@ class HoverProfile extends Component {
           top:'2em',
           left:'1em',
         }}>
-          <div style={{
-            backgroundColor:"red",
-            width:'6em',
-            height:'6em',
-            zIndex:'999',
-          }}/>
+          <ProfilePic
+            user={this.props.user}
+            style={{
+              width:'6em',
+              height:'6em',
+              zIndex:'999',
+            }}
+          />
         </div>
         <div style={{
           position:'absolute',

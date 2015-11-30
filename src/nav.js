@@ -1,9 +1,24 @@
 import React, { Component } from 'react';
-import Util, {Hover, Image} from './util';
-var f16 = 'ffffffffffffffff';
+import Util, {Hover, Image, ProfilePic} from './util';
 
 class NavListTopItem extends Component {
   render() {
+    var img;
+    if (this.props.user) {
+      img = (<ProfilePic
+        user={this.props.user}
+        style={{
+          width:'20px',
+          height:'20px',
+          margin:'4px'}} />);
+    } else {
+      img = (<Image style={{
+        width:'20px',
+        height:'20px',
+        margin:'4px',
+        backgroundColor:'red'}} />);
+    }
+
     return (
       <Hover
         hover={{textDecoration: 'underline'}}
@@ -14,12 +29,7 @@ class NavListTopItem extends Component {
           alignItems: Util.alignItems('center'),
           cursor: 'pointer'
         }}>
-        <Image style={{
-          width: '20px',
-          height: '20px',
-          margin: '4px',
-          backgroundColor: 'red'
-        }} />
+        {img}
         <div style={{
           float: 'left',
           clear: 'left',
@@ -36,6 +46,7 @@ class NavListTopItem extends Component {
 
 class NavListItem extends Component {
   render() {
+
     return (
       <Hover
         hover={{
@@ -48,11 +59,11 @@ class NavListItem extends Component {
           flexDirection:Util.flexDirection('row'),
           alignItems: Util.alignItems('center'),
           cursor:'pointer'}}>
-        <Image style={{
-          width:'20px',
-          height:'20px',
-          margin:'4px',
-          backgroundColor:'red'}} />
+          <Image style={{
+            width:'20px',
+            height:'20px',
+            margin:'4px',
+            backgroundColor:'red'}} />
         <div style={{
           float:'left',
           clear:'left',
@@ -95,6 +106,7 @@ export class NavBar extends Component {
     return (
     <span>
       <NavListTopItem
+        user={user}
         text={user.first + ' ' + user.last}
         onClick={this.props.fns.changePage.bind(null,'profile',{id:user.id})}
       />

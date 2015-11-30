@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Util, {Hover, Image, VertRule} from './util';
+import Util, {Hover, Image, VertRule, ProfilePic} from './util';
 
 export class HeaderBar extends Component {
   constructor(props){
@@ -99,11 +99,10 @@ class HeaderMenu extends Component {
             display: Util.flex,
             flexDirection: Util.flexDirection('row'),
             alignItems: Util.alignItems('center')}}>
-          <Image style={{
+          <ProfilePic user={account} style={{
             width:'23px',
             height:'23px',
-            margin:'4px',
-            backgroundColor:'red'
+            margin:'4px'
           }} />
           <div style={{
             marginRight:'10px',

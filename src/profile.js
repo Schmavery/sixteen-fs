@@ -15,7 +15,29 @@ class CoverSection {
   }
 }
 
-export class Profile {
+export class Profile extends Component{
+  constructor(props){
+      super(props);
+      this.handleImage = this.handleImage.bind(this);
+  }
+
+  handleImage(e){
+    console.log("HELLO");
+    var self = this;
+    var reader = new FileReader();
+    var file = e.target.files[0];
+    reader.onload = (upload) => {
+      console.log("HI", upload.target.result);
+      //this.props.fns.setAccount({image: upload.target.result});
+    ///this.props.fns.deepUpdate();
+      var accts = this.props.fns.getAccounts();
+      console.log("ACCTS",accts);
+      accts.forEach(acct => acct === this.props.fns.getAccount() ? acct.image = upload.target.result : null);
+      this.props.fns.deepUpdate({'accounts':{$set: accts}});
+    }
+    reader.readAsDataURL(file);
+  }
+
   render () {
     var user = this.props.fns.getAccount(this.props.user.id);
     return (
@@ -33,6 +55,9 @@ export class Profile {
           position: 'relative'}}>
           <div style={{flex: '0 0 35em'}}>
             <NameTag user={user} fns={this.props.fns}/>
+            <form>
+            <input type="file" onChange={this.handleImage}/>
+            </form>
           </div>
 
         </div>

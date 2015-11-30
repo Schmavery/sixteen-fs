@@ -27,13 +27,16 @@ export class App extends Component {
       pageInfo: info,
       siteName: 'ffffffffffffffff',
       userID: '1',
-      posts: [{id:'1', author:'1', time: Date.now().toString(), content:'Welcome to the site!', likes:[]}],
+      posts: [{id:'1', author:'1', time: Date.now().toString(), content:'Welcome to the site!'}],
       accounts: [{
         id: '1',
         first: 'Mark',
         last: 'Zuckerberg',
-        email: 'mark@gmail.com'}],
-      comments: [],
+        email: 'mark@gmail.com',
+        about: 'I made facebook.com!',
+        image: ''}],
+      comments: [{id:'1', author:'1', post:'1', time: Date.now().toString(), content: "Thanks!"}],
+      likes: []
     };
 
     window.addEventListener("popstate", (e) => {
@@ -50,7 +53,7 @@ export class App extends Component {
         window.history.pushState({page:page, pageInfo:info},this.state.siteName+" "+page,'#'+page+Util.uriEncodeObj(info));
         this.setState({page:page, pageInfo:info})
       },
-      setAccount: (account) => {
+      setAccount: account => {
         var newAcc = {};
         Object.keys(account).forEach(k => newAcc[k] = {$set:account[k]});
         var newState = React.addons.update(this.state, {
@@ -65,7 +68,7 @@ export class App extends Component {
         var newState = React.addons.update(this.state, el);
         this.setState(newState, cb);
       },
-      getAccount: (id) => this.state.accounts.filter((a) => a.id === (id || this.state.userID))[0],
+      getAccount: id => this.state.accounts.filter((a) => a.id === (id || this.state.userID))[0],
       getAccounts: () => this.state.accounts,
       getSiteName: () => this.state.siteName,
       getPosts: () => this.state.posts
@@ -84,9 +87,16 @@ export class App extends Component {
         }
         return false;
       },
-      friends: (id1, id2) => true
+      friends: (id1, id2) => true,
+      setSiteName: name => this.setState({siteName:name}),
+      getLikes: post => post ? this.state.likes.filter(like => (post.id === like.post)) : this.state.likes,
+      getComments: post => post ? this.state.comments.filter(comment => (post.id === comment.post)) : this.state.comments,
+      getStateDebug: () => this.state
     }
+
+
     Object.keys(this.helper).forEach(k => this.helper[k].bind(this));
+    window.helper = this.helper;
   }
   render() {
     switch (this.state.page){
