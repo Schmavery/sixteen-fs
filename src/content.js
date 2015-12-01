@@ -342,8 +342,8 @@ export class NewStatus extends Component {
             height: '20px',
             backgroundColor: 'red'}} />
           <div style={{
-            marginLeft: '5px',
-            marginRight: '10px',
+            marginLeft: 5,
+            marginRight: 10,
             fontWeight: 'bold'}}>
             Create Photo Album
           </div>
@@ -353,13 +353,14 @@ export class NewStatus extends Component {
           display: Util.flex,
           flexDirection: Util.flexDirection('row')}}>
           <ProfilePic user={this.props.fns.getAccount()} style={{
-            margin: '5px',
-            width: '40px',
-            height: '40px'}} />
+            flexShrink:0,
+            margin: 5,
+            width: 40,
+            height: 40}} />
           <textarea
             style={{
-              marginTop: '10px',
-              minHeight: '50px',
+              marginTop: 10,
+              minHeight: 50,
               width: '100%',
               border: '0px',
               outline: '0px',

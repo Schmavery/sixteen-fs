@@ -76,11 +76,11 @@ export class ProfilePic extends Component {
     this.props.user.id;
     if (this.props.user.image){
       return (
-        <img src={this.props.user.image || ""} style={{...this.props.style, border:"1px solid lightgrey", objectFit: 'cover'}}/>
+        <img src={this.props.user.image || ""} style={{...this.props.style, border:"1px solid lightgrey",objectFit:'cover'}}/>
       );
     } else {
       return (
-        <svg ref="svg" viewBox="0 0 100 100" style={{...this.props.style,border:"1px solid lightgrey"}} preserveAspectRatio="none">
+        <svg ref="svg" style={{...this.props.style,border:"1px solid lightgrey"}} viewBox="0 0 100 100" preserveAspectRatio="none">
           <rect id="bg" height="100" width="100" y="0" x="0" fill="#c5cde0"/>
           <circle id="head" r="20" cy="48" cx="50" fill="#ffffff"/>
           <circle id="body" r="37.94733" cy="100" cx="50" fill="#ffffff"/>
@@ -143,14 +143,6 @@ export class NameTag extends Component {
   }
 }
 
-export class FriendsDropdown extends Component {
-  render() {
-    return (
-      <div> </div>
-    );
-  }
-}
-
 class HoverProfile extends Component {
   render() {
     var fullName = this.props.user.first + " " +this.props.user.last;
@@ -208,7 +200,6 @@ class HoverProfile extends Component {
           bottom:0,
           position:"absolute",
           borderTop:'solid 1px #dcdee3'}} >
-          <FriendsDropdown />
         </div>
         <div style={{
           position:'absolute',
