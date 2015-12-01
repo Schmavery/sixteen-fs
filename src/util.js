@@ -306,7 +306,7 @@ function uriDecodeObj(str){
 
 function processContent(content){
   return content.split(' ')
-    .map((e,i) => e.match(/^#[a-zA-Z0-9]+$/) ? (<a href={'#'+e} key={i}>{e}</a>): e)
+    .map((e,i) => e.match(/^#[a-zA-Z0-9]+$/) ? (<a href='javascript:void(0)' key={i}>{e}</a>): e)
     .reduce((acc, e) => acc.concat([" ", e]), []).slice(1);
 }
 
