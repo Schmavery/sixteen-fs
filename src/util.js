@@ -304,6 +304,12 @@ function uriDecodeObj(str){
   return {page:qArr[0], info:obj};
 }
 
+function processContent(content){
+  return content.split(' ')
+    .map((e,i) => e.match(/^#[a-zA-Z0-9]+$/) ? (<a href={'#'+e} key={i}>{e}</a>): e)
+    .reduce((acc, e) => acc.concat([" ", e]), []).slice(1);
+}
+
 export default {
   flex,
   flexDirection,
@@ -316,5 +322,6 @@ export default {
   timeAgo,
   OpenInNewTab,
   uriDecodeObj,
-  uriEncodeObj
+  uriEncodeObj,
+  processContent
 };

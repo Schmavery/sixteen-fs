@@ -164,7 +164,7 @@ export class Comment extends Component {
               fontWeight:'normal',
               fontSize:'small'
             }}>
-              {this.props.comment.content}
+              {Util.processContent(this.props.comment.content)}
             </span>
           </div>
           <div><span style={{fontWeight:'normal', fontSize:'small'}}>
@@ -265,7 +265,7 @@ export class Post extends Component {
           <Rule />
         </span> : null}
       <PersonBrief fns={this.props.fns} post={this.props.post}/>
-        {this.props.post.content}
+        {Util.processContent(this.props.post.content)}
       <FeedBackSection post={this.props.post} fns={this.props.fns}/>
       </ContentWrapper>);
   }

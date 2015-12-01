@@ -96,7 +96,8 @@ export class App extends Component {
       getLikes: post => post ? this.state.likes.filter(like => (post.id === like.post)) : this.state.likes,
       getComments: post => post ? this.state.comments.filter(comment => (post.id === comment.post)) : this.state.comments,
       getCommentLikes: c => c ? this.state.commentLikes.filter(l => c.id === l.comment) : this.state.commentLikes,
-      getStateDebug: () => this.state
+      getStateDebug: () => this.state,
+      process: Util.processContent
     }
 
 
