@@ -229,6 +229,22 @@ class HoverProfile extends Component {
   }
 }
 
+export class ModalWrapper extends Component{
+  constructor(props){
+    super(props);
+  }
+
+  render(){
+    return (
+      <div style={{position:'fixed',background:'rgba(0,0,0,.5)'}}>
+        <div style={{position:'fixed',margin:'0 auto',backgroundColor:'white'}}>
+          {this.props.children}
+        </div>
+      </div>
+    );
+  }
+}
+
 var formatTime = (t) => {
   var curTime = Date.now();
   return (new Date(parseInt(t))).toString();
@@ -306,7 +322,14 @@ function uriDecodeObj(str){
 
 function processContent(content){
   return content.split(' ')
-    .map((e,i) => e.match(/^#[a-zA-Z0-9]+$/) ? (<a href='javascript:void(0)' key={i}>{e}</a>): e)
+    .map((e,i) => e.match(/^#[a-zA-Z0-9]+$/) ?(
+      <span style={{
+        backgroundColor:'#d7e2f7',
+        borderRadius:3,
+        border:'1px solid #afc2e5',
+        padding:1,
+        cursor:'pointer'
+      }} key={i}>{e}</span>): e)
     .reduce((acc, e) => acc.concat([" ", e]), []).slice(1);
 }
 
