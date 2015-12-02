@@ -229,17 +229,42 @@ class HoverProfile extends Component {
   }
 }
 
-export class ModalWrapper extends Component{
+export class ModalOverlay extends Component{
   constructor(props){
     super(props);
   }
-
   render(){
     return (
-      <div style={{position:'fixed',background:'rgba(0,0,0,.5)'}}>
-        <div style={{position:'fixed',margin:'0 auto',backgroundColor:'white'}}>
+      <div style={{
+        position:'fixed',
+        background:'rgba(0,0,0,.5)',
+        top:0,
+        height:'100%',
+        width:'100%',
+        zIndex:60,}}
+        onClick={this.props.close}>
           {this.props.children}
-        </div>
+      </div>
+    );
+  }
+}
+
+export class ModalWindow extends Component{
+  render(){
+    return (
+      <div style={{
+        position:'relative',
+        boxShadow:'0px 0px 20px #000',
+        zIndex:70,
+        backgroundColor: '#fff',
+        padding: 10,
+        margin: 'auto',
+        top: '50%',
+        transform: 'translateY(-50%)',
+        borderRadius: 5,
+        border: '1px solid #dfe3ee',
+        ...this.props.style}}>
+        {this.props.children}
       </div>
     );
   }

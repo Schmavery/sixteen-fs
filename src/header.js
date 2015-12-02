@@ -46,7 +46,7 @@ export class HeaderBar extends Component {
         margin: 0,
         top: 0,
         left: 0,
-        zIndex: 99,
+        zIndex: 50,
         alignItems: Util.alignItems('center')}}>
         {logo}
         <input

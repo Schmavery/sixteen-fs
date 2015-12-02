@@ -1,5 +1,5 @@
 import React, { Component } from 'react/addons';
-import Util, {Hover, Rule} from './util';
+import Util, {Hover, Rule, ModalOverlay} from './util';
 import {NewsFeed, MainWrapper} from './feed';
 import {LoginPage} from './login';
 import {Profile} from './profile';
@@ -40,7 +40,8 @@ export class App extends Component {
       }],
       comments: [{id:'1', author:'1', post:'1', time: Date.now().toString(), content: "Thanks!"}],
       commentLikes: [],
-      likes: []
+      likes: [],
+      modal: null,
     };
 
     window.addEventListener("popstate", (e) => {
@@ -96,37 +97,67 @@ export class App extends Component {
       getLikes: post => post ? this.state.likes.filter(like => (post.id === like.post)) : this.state.likes,
       getComments: post => post ? this.state.comments.filter(comment => (post.id === comment.post)) : this.state.comments,
       getCommentLikes: c => c ? this.state.commentLikes.filter(l => c.id === l.comment) : this.state.commentLikes,
-      getStateDebug: () => this.state
+      getStateDebug: () => this.state,
+      displayModal: (body, cb) => {
+        document.body.style.overflow='hidden'
+        this.setState({modal: {body: body, callback:cb}})
+      },
     }
 
 
     Object.keys(this.helper).forEach(k => this.helper[k].bind(this));
     window.helper = this.helper;
+    this.closeModal = this.closeModal.bind(this);
   }
+
+  closeModal() {
+    document.body.style.overflow='auto'
+    this.setState({modal:null})
+  }
+
   render() {
+    var ret;
     switch (this.state.page){
       case 'login':
-        return <LoginPage fns={this.helper} />;
+        ret = (<LoginPage fns={this.helper} />);
+        break;
       case 'feed':
-        return (
+        ret = (
           <MainWrapper fns={this.helper}>
             <NewsFeed fns={this.helper} />;
           </MainWrapper>
         );
+        break;
       case 'profile':
-        return (
+        ret = (
           <MainWrapper fns={this.helper}>
             <Profile user={this.state.pageInfo} fns={this.helper} />
           </MainWrapper>
         );
+        break;
       case 'search':
-        return (
+        ret = (
           <MainWrapper fns={this.helper}>
             <Search info={this.state.pageInfo || {}} fns={this.helper} />
           </MainWrapper>
         );
+        break;
       default:
+        ret = (
+          <MainWrapper fns={this.helper}>
+            <h1 style={{margin:'auto'}}>404</h1>
+          </MainWrapper>
+        );
         console.log('ERROR in App.render:',this.state.page, this.state.info);
     }
+    return (
+      <div>
+        {this.state.modal ?
+          <ModalOverlay close={this.closeModal}>
+            {this.state.modal.body(this.closeModal)}
+          </ModalOverlay>
+          : ""}
+        {ret}
+      </div>);
   }
 }

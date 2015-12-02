@@ -1,6 +1,48 @@
 import React, { Component } from 'react';
-import Util, {Hover, Rule, Image, VertRule, NameTag, ProfilePic} from './util';
+import Util, {Hover, Rule, Image, VertRule, NameTag, ProfilePic, ModalWindow} from './util';
 import Data from './data';
+
+class LikesWindow extends Component {
+  render() {
+    var accounts = this.props.likes.map(l => this.props.fns.getAccount(l.author));
+    console.log(accounts);
+    return (
+      <ModalWindow style={{width:300,maxHeight:400,display:Util.flex,flexDirection:Util.flexDirection('column'),}}>
+        <div style=
+        {{
+          display:Util.flex,
+          borderTopLeftRadius: 5,
+          borderTopRightRadius: 5,
+          flexDirection:Util.flexDirection('row'),
+          margin:-10,
+          marginBottom:10,
+          padding:10,
+          backgroundColor:'#f6f7f8',
+          borderBottom:'1px solid #e9eaed'}}>
+          <div style={{marginRight:'auto',fontWeight:'bold',fontFamily:'sans-serif'}}>
+            People Who Like This
+          </div>
+          <div onClick={this.props.close} style=
+            {{
+              marginLeft:'auto',
+              cursor:'pointer',
+              color:'grey',
+              fontWeight:'bold',
+            }}>✕
+          </div>
+        </div>
+        <div style={{overflowY:'auto',marginRight:-10}}>
+        {accounts.map((u, i) =>
+          [i == 0 ? "" : <Rule />,
+          (<div style={{padding:'2px 10px',display: Util.flex, flexDirection: Util.flexDirection('row')}}>
+            <ProfilePic user={u} style={{height:30,width:30,alignItems:'center',justifyContent:'center'}}/>
+            <NameTag fns={this.props.fns} user={u} style={{padding:3,marginLeft:10}}/>
+          </div>)])}
+        </div>
+      </ModalWindow>
+    );
+  }
+}
 
 class PersonBrief extends Component {
   render () {
@@ -97,7 +139,9 @@ class FeedBackSection extends Component {
          {likesString ?
            <Hover
              hover={{textDecoration: 'underline'}}
+             onClick={() => this.props.fns.displayModal(c => <LikesWindow likes={likes} fns={this.props.fns} close={c}/>)}
              style={{
+               cursor:'pointer',
                color:"#355089",
                fontFamily:'sans-serif',
                fontWeight:'normal'}}>{likesString}</Hover> : ""}
@@ -174,7 +218,11 @@ export class Comment extends Component {
             {
               likes.length > 0 ? <div style={{color:'#6182c6',display:'inline'}}>
               &nbsp;·&nbsp;
-              <Hover hover={{textDecoration:'underline'}} style={{cursor:'pointer',display:'inline'}}>👍 {likes.length}</Hover></div> : ""
+              <Hover hover={{textDecoration:'underline'}} style={{cursor:'pointer',display:'inline'}}
+                onClick={() => this.props.fns.displayModal(c => <LikesWindow likes={likes} fns={this.props.fns} close={c}/>)}
+              >
+                👍 {likes.length}
+              </Hover></div> : ""
             }
            &nbsp;· {Util.timeAgo(this.props.comment.time)}</span></div>
         </div>
